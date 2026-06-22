@@ -1,6 +1,8 @@
 import { readFile } from "node:fs/promises";
 
-export async function loadDotEnv(fileUrl = new URL("../.env", import.meta.url)) {
+export async function loadDotEnv(fileUrl = new URL("../.env", import.meta.url), options = {}) {
+  const { override = true } = options;
+
   try {
     const text = await readFile(fileUrl, "utf8");
     for (const line of text.split(/\r?\n/)) {
@@ -13,7 +15,7 @@ export async function loadDotEnv(fileUrl = new URL("../.env", import.meta.url)) 
       const rawValue = trimmed.slice(separatorIndex + 1).trim();
       const value = rawValue.replace(/^["']|["']$/g, "");
 
-      if (key && process.env[key] === undefined) {
+      if (key && (override || process.env[key] === undefined)) {
         process.env[key] = value;
       }
     }
