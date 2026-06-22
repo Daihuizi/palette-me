@@ -1,0 +1,29 @@
+{
+  "profile": {
+    "undertone": "neutral",
+    "depth": "medium",
+    "skinType": "combination",
+    "style": "soft",
+    "occasion": "school, work, and casual weekends"
+  },
+  "products": [
+    {
+      "category": "Eye shadow",
+      "name": "Everyday Rose Palette",
+      "shade": "rose brown",
+      "finish": "matte"
+    },
+    {
+      "category": "Blush",
+      "name": "Soft Petal Blush",
+      "shade": "dusty pink",
+      "finish": "satin"
+    },
+    {
+      "category": "Lipstick",
+      "name": "MLBB Lip Tint",
+      "shade": "muted rose",
+      "finish": "glossy"
+    }
+  ]
+}

@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PaletteMe</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="topbar" aria-label="Primary">
+        <div class="brand-lockup">
+          <span class="brand-mark">PM</span>
+          <span>PaletteMe</span>
+        </div>
+        <div class="nav-actions">
+          <a href="#demo">Demo</a>
+          <a href="#agent">Agent</a>
+          <a href="#judge">Pitch</a>
+          <button id="resetDemo" class="ghost-button" type="button">Reset demo</button>
+        </div>
+      </nav>
+
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">AI personal makeup palette</p>
+          <h1>PaletteMe</h1>
+          <p class="hero-lede">
+            Track the makeup you already own, learn your best color families, and check future purchases before another shade becomes a return.
+          </p>
+          <div class="hero-actions">
+            <a class="primary-link" href="#demo">Open demo</a>
+            <a class="secondary-link" href="#story">Project story</a>
+          </div>
+        </div>
+
+        <figure class="hero-visual">
+          <img src="assets/vanity-palette-hero.png" alt="Organized makeup palette, lipstick, blush, and color swatches on a vanity table" />
+          <figcaption>Personal palette memory for eye, cheek, and lip harmony.</figcaption>
+        </figure>
+      </div>
+    </header>
+
+    <section id="story" class="story-band" aria-labelledby="story-title">
+      <div>
+        <p class="eyebrow">Competition story</p>
+        <h2 id="story-title">From messy makeup shelf to personal color system</h2>
+      </div>
+      <div class="story-grid">
+        <article>
+          <span class="story-number">01</span>
+          <h3>Record what you own</h3>
+          <p>PaletteMe keeps an organized shelf of eye shadow, blush, lipstick, and base products with shade families and finishes.</p>
+        </article>
+        <article>
+          <span class="story-number">02</span>
+          <h3>Find your harmony</h3>
+          <p>The assistant connects undertone, skin depth, daily style, and occasion to a cohesive makeup direction.</p>
+        </article>
+        <article>
+          <span class="story-number">03</span>
+          <h3>Buy with confidence</h3>
+          <p>Before purchasing a new shade, users can check fit, overlap, and whether the product fills a real gap.</p>
+        </article>
+      </div>
+    </section>
+
+    <main id="demo" class="app-shell">
+      <section class="panel profile-panel" aria-labelledby="profile-title">
+        <div class="section-heading">
+          <p class="eyebrow">Step 1</p>
+          <h2 id="profile-title">Beauty profile</h2>
+        </div>
+
+        <form id="profileForm" class="form-grid">
+          <label>
+            Undertone
+            <select id="undertone">
+              <option value="neutral">Neutral</option>
+              <option value="warm">Warm</option>
+              <option value="cool">Cool</option>
+              <option value="olive">Olive</option>
+              <option value="muted">Muted</option>
+            </select>
+          </label>
+
+          <label>
+            Skin depth
+            <select id="depth">
+              <option value="light">Light</option>
+              <option value="medium">Medium</option>
+              <option value="tan">Tan</option>
+              <option value="deep">Deep</option>
+            </select>
+          </label>
+
+          <label>
+            Skin type
+            <select id="skinType">
+              <option value="combination">Combination</option>
+              <option value="dry">Dry</option>
+              <option value="oily">Oily</option>
+              <option value="sensitive">Sensitive</option>
+            </select>
+          </label>
+
+          <label>
+            Daily style
+            <select id="style">
+              <option value="soft">Soft everyday</option>
+              <option value="clean">Clean girl</option>
+              <option value="romantic">Romantic</option>
+              <option value="bold">Bold glam</option>
+              <option value="professional">Professional</option>
+            </select>
+          </label>
+
+          <label class="wide">
+            Occasion
+            <input id="occasion" type="text" value="school, work, and casual weekends" />
+          </label>
+        </form>
+      </section>
+
+      <section class="panel inventory-panel" aria-labelledby="inventory-title">
+        <div class="section-heading">
+          <p class="eyebrow">Step 2</p>
+          <h2 id="inventory-title">My makeup shelf</h2>
+        </div>
+
+        <form id="productForm" class="product-form">
+          <select id="category" aria-label="Product category">
+            <option value="Eye shadow">Eye shadow</option>
+            <option value="Blush">Blush</option>
+            <option value="Lipstick">Lipstick</option>
+            <option value="Base">Base</option>
+          </select>
+          <input id="productName" type="text" placeholder="Product or palette name" />
+          <input id="shadeFamily" type="text" placeholder="Shade family, e.g. rose brown" />
+          <select id="finish" aria-label="Finish">
+            <option value="matte">Matte</option>
+            <option value="satin">Satin</option>
+            <option value="glossy">Glossy</option>
+            <option value="shimmer">Shimmer</option>
+          </select>
+          <button type="submit">Add</button>
+        </form>
+
+        <div id="inventoryList" class="inventory-list" aria-live="polite"></div>
+      </section>
+
+      <section class="panel recommendation-panel" aria-labelledby="recommend-title">
+        <div class="section-heading">
+          <p class="eyebrow">Step 3</p>
+          <h2 id="recommend-title">AI look plan</h2>
+        </div>
+
+        <div class="score-row">
+          <div>
+            <span id="matchScore" class="score">86</span>
+            <span class="score-label">fit score</span>
+          </div>
+          <button id="generateLook" type="button">Generate look</button>
+        </div>
+
+        <div id="recommendation" class="recommendation"></div>
+      </section>
+
+      <section class="panel checker-panel" aria-labelledby="checker-title">
+        <div class="section-heading">
+          <p class="eyebrow">Step 4</p>
+          <h2 id="checker-title">Before I buy</h2>
+        </div>
+
+        <form id="checkerForm" class="checker-form">
+          <input id="wishProduct" type="text" placeholder="Product you want to buy" />
+          <input id="wishShade" type="text" placeholder="Shade description" />
+          <button type="submit">Check</button>
+        </form>
+
+        <div id="buyAdvice" class="buy-advice"></div>
+      </section>
+    </main>
+
+    <section id="agent" class="agent-band" aria-labelledby="agent-title">
+      <div class="agent-copy">
+        <p class="eyebrow">Agent design</p>
+        <h2 id="agent-title">A beauty assistant built from reusable skills</h2>
+        <p>
+          The production agent would combine shade matching, look building, shopping guardrails, and new-product research. The demo below simulates that flow locally so the product idea can be shown without a backend.
+        </p>
+      </div>
+      <div class="skill-grid" aria-label="Agent skill cards">
+        <article><strong>Undertone Analysis</strong><span>warm, cool, neutral, olive, muted</span></article>
+        <article><strong>Shade Matching</strong><span>maps product names to color families</span></article>
+        <article><strong>Look Builder</strong><span>connects eyes, cheeks, and lips</span></article>
+        <article><strong>Shopping Guard</strong><span>flags duplicates and risky shades</span></article>
+      </div>
+    </section>
+
+    <section id="judge" class="judge-band" aria-labelledby="judge-title">
+      <div class="judge-card">
+        <p class="eyebrow">Judge demo</p>
+        <h2 id="judge-title">A 60-second story for the project</h2>
+        <ol class="demo-steps">
+          <li><strong>Problem:</strong> makeup users often buy shades that look good online but do not fit their own palette.</li>
+          <li><strong>Memory:</strong> PaletteMe records the user's existing eye shadow, blush, lip, and base products.</li>
+          <li><strong>Agent reasoning:</strong> it connects undertone, style, occasion, and owned products into one look.</li>
+          <li><strong>Guardrail:</strong> before buying, it checks whether a shade is suitable or already duplicated.</li>
+        </ol>
+      </div>
+      <div class="metrics-strip" aria-label="Prototype highlights">
+        <article><strong>4</strong><span>agent skills designed</span></article>
+        <article><strong>3</strong><span>product decisions supported</span></article>
+        <article><strong>1</strong><span>personal palette memory</span></article>
+      </div>
+    </section>
+
+    <script src="app.js"></script>
+  </body>
+</html>
