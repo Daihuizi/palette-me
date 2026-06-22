@@ -2,7 +2,10 @@ import { createServer } from "node:http";
 import { readFile } from "node:fs/promises";
 import { extname, join, normalize } from "node:path";
 import { fileURLToPath } from "node:url";
+import { loadDotEnv } from "./agent/env-loader.mjs";
 import { analyzePalette, checkPurchase } from "./agent/palette-agent.mjs";
+
+await loadDotEnv();
 
 const rootDir = fileURLToPath(new URL(".", import.meta.url));
 const port = Number(process.env.PORT || 8787);

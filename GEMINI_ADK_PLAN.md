@@ -15,11 +15,17 @@ This keeps the demo stable for judging while proving that the architecture is re
 
 ## Environment Variables
 
-Create a local `.env` file or export variables in your shell:
+Create a local `.env` file:
 
 ```bash
-export GEMINI_API_KEY="your_api_key_here"
-export GEMINI_MODEL="gemini-2.0-flash"
+cp .env.example .env
+```
+
+Then edit `.env`:
+
+```text
+GEMINI_API_KEY=your_api_key_here
+GEMINI_MODEL=gemini-2.0-flash
 ```
 
 Run:

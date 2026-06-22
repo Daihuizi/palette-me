@@ -1,5 +1,8 @@
 import { readFile } from "node:fs/promises";
+import { loadDotEnv } from "./env-loader.mjs";
 import { analyzePalette, checkPurchase } from "./palette-agent.mjs";
+
+await loadDotEnv();
 
 const sample = JSON.parse(await readFile(new URL("./sample-request.json", import.meta.url), "utf8"));
 

@@ -89,11 +89,17 @@ npm run agent:sample
 PaletteMe works without an API key. To let Gemini refine the local agent recommendations, set:
 
 ```bash
-export GEMINI_API_KEY="your_api_key_here"
-export GEMINI_MODEL="gemini-2.0-flash"
+cp .env.example .env
 ```
 
-Then run `npm start`. The app will show `gemini-assisted:<model>` when Gemini is active and will fall back to local mode if the request fails.
+Then edit `.env`:
+
+```text
+GEMINI_API_KEY=your_api_key_here
+GEMINI_MODEL=gemini-2.0-flash
+```
+
+Then run `npm start`. The app will show `gemini-assisted:<model>` when Gemini is active and will fall back to local mode if the request fails. The `.env` file is ignored by Git and should not be committed.
 
 ## Competition Materials
 
