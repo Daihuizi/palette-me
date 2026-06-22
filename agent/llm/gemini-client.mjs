@@ -1,5 +1,6 @@
-const defaultModel = process.env.GEMINI_MODEL || "gemini-2.0-flash";
-const endpointBase = "https://generativelanguage.googleapis.com/v1beta";
+import { GoogleGenAI } from "@google/genai";
+
+const defaultModel = process.env.GEMINI_MODEL || "gemini-3.5-flash";
 
 export function isGeminiConfigured() {
   return Boolean(process.env.GEMINI_API_KEY);
@@ -34,30 +35,14 @@ export async function refineRecommendationWithGemini({ profile, products, localR
 }
 
 async function generateText(prompt) {
-  const url = `${endpointBase}/models/${defaultModel}:generateContent?key=${encodeURIComponent(process.env.GEMINI_API_KEY)}`;
-  const response = await fetch(url, {
-    method: "POST",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify({
-      contents: [
-        {
-          parts: [{ text: prompt }],
-        },
-      ],
-      generationConfig: {
-        temperature: 0.45,
-        responseMimeType: "application/json",
-      },
-    }),
+  const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+  const interaction = await ai.interactions.create({
+    model: defaultModel,
+    input: prompt,
+    store: false,
   });
 
-  if (!response.ok) {
-    const detail = await response.text();
-    throw new Error(`Gemini request failed: ${response.status} ${detail.slice(0, 180)}`);
-  }
-
-  const data = await response.json();
-  return data.candidates?.[0]?.content?.parts?.map((part) => part.text || "").join("") || "";
+  return interaction.output_text || interaction.steps?.at(-1)?.content?.[0]?.text || "";
 }
 
 function parseJsonFromText(text) {

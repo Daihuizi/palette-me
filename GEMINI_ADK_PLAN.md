@@ -8,7 +8,7 @@ PaletteMe now has a Gemini-ready agent layer. The app still works without any AP
 
 1. Local skills analyze the profile and makeup shelf.
 2. The local agent builds a structured recommendation.
-3. If `GEMINI_API_KEY` is configured, Gemini refines the recommendation text.
+3. If `GEMINI_API_KEY` is configured, Gemini refines the recommendation text through Google's official `@google/genai` SDK.
 4. If Gemini is unavailable, the app falls back to the local result.
 
 This keeps the demo stable for judging while proving that the architecture is ready for real AI reasoning.
@@ -25,7 +25,7 @@ Then edit `.env`:
 
 ```text
 GEMINI_API_KEY=your_api_key_here
-GEMINI_MODEL=gemini-2.0-flash
+GEMINI_MODEL=gemini-3.5-flash
 ```
 
 Run:

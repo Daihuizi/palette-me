@@ -96,10 +96,10 @@ Then edit `.env`:
 
 ```text
 GEMINI_API_KEY=your_api_key_here
-GEMINI_MODEL=gemini-2.0-flash
+GEMINI_MODEL=gemini-3.5-flash
 ```
 
-Then run `npm start`. The app will show `gemini-assisted:<model>` when Gemini is active and will fall back to local mode if the request fails. The `.env` file is ignored by Git and should not be committed.
+Then run `npm start`. PaletteMe uses Google's official `@google/genai` SDK. The app will show `gemini-assisted:<model>` when Gemini is active and will fall back to local mode if the request fails. The `.env` file is ignored by Git and should not be committed.
 
 ## Competition Materials
 
