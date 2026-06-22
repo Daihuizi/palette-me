@@ -56,13 +56,13 @@ const server = createServer(async (request, response) => {
 
     if (request.method === "POST" && url.pathname === "/api/recommendation") {
       const body = await readRequestBody(request);
-      sendJson(response, 200, analyzePalette(body));
+      sendJson(response, 200, await analyzePalette(body));
       return;
     }
 
     if (request.method === "POST" && url.pathname === "/api/purchase-check") {
       const body = await readRequestBody(request);
-      sendJson(response, 200, checkPurchase(body));
+      sendJson(response, 200, await checkPurchase(body));
       return;
     }
 

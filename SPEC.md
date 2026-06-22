@@ -61,6 +61,7 @@ The first version is a web prototype for a competition demo. It focuses on the u
 ## Local Agent Prototype
 - `server.mjs`: local HTTP server and static web server.
 - `agent/palette-agent.mjs`: orchestrates PaletteMe's local agent flow.
+- `agent/llm/gemini-client.mjs`: optional Gemini refinement adapter with local fallback.
 - `agent/skills/undertone-analysis.mjs`: maps profile signals to shade families.
 - `agent/skills/shade-matching.mjs`: matches owned products against target shade families.
 - `agent/skills/look-builder.mjs`: turns profile and shelf data into a look recipe.

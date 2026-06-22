@@ -2,10 +2,45 @@ import { getShadeFamilies } from "./skills/undertone-analysis.mjs";
 import { matchOwnedProducts } from "./skills/shade-matching.mjs";
 import { buildLookPlan } from "./skills/look-builder.mjs";
 import { evaluatePurchase } from "./skills/shopping-guard.mjs";
+import { refineRecommendationWithGemini } from "./llm/gemini-client.mjs";
 
-export function analyzePalette(input) {
+export async function analyzePalette(input) {
   const profile = normalizeProfile(input.profile);
   const products = Array.isArray(input.products) ? input.products : [];
+  const localResult = buildLocalRecommendation({ profile, products });
+
+  try {
+    const geminiResult = await refineRecommendationWithGemini({ profile, products, localResult });
+    if (geminiResult) return geminiResult;
+  } catch (error) {
+    return {
+      ...localResult,
+      mode: "local-simulated:gemini-fallback",
+      warning: error.message,
+    };
+  }
+
+  return localResult;
+}
+
+export async function checkPurchase(input) {
+  const profile = normalizeProfile(input.profile);
+  const products = Array.isArray(input.products) ? input.products : [];
+  const result = evaluatePurchase({
+    profile,
+    products,
+    product: input.product || "This product",
+    shade: input.shade || "",
+  });
+
+  return {
+    agent: "PaletteMe local agent",
+    mode: "local-simulated",
+    ...result,
+  };
+}
+
+function buildLocalRecommendation({ profile, products }) {
   const shadeFamilies = getShadeFamilies(profile);
   const matchedProducts = matchOwnedProducts(products, shadeFamilies);
   const lookPlan = buildLookPlan({ profile, products, shadeFamilies, matchedProducts });
@@ -47,23 +82,6 @@ export function analyzePalette(input) {
       "Look Builder Skill",
       "Shopping Guard Skill",
     ],
-  };
-}
-
-export function checkPurchase(input) {
-  const profile = normalizeProfile(input.profile);
-  const products = Array.isArray(input.products) ? input.products : [];
-  const result = evaluatePurchase({
-    profile,
-    products,
-    product: input.product || "This product",
-    shade: input.shade || "",
-  });
-
-  return {
-    agent: "PaletteMe local agent",
-    mode: "local-simulated",
-    ...result,
   };
 }
 

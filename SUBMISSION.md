@@ -62,6 +62,7 @@ npm run agent:sample
 - Static web UI
 - Local browser storage
 - Local simulated Agent API
+- Optional Gemini-assisted recommendation refinement
 - Node.js server with no external dependencies
 - Structured documents: `README.md`, `SPEC.md`, `PITCH.md`, `EVALUATION.md`
 

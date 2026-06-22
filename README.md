@@ -38,6 +38,7 @@ Current prototype:
 - Static HTML, CSS, and JavaScript
 - Local browser storage
 - Local simulated agent API with reusable skills
+- Gemini-ready refinement layer with local fallback
 - Competition-ready product story and clickable demo
 
 Future version:
@@ -83,11 +84,23 @@ You can also run a sample agent request:
 npm run agent:sample
 ```
 
+## Optional Gemini Mode
+
+PaletteMe works without an API key. To let Gemini refine the local agent recommendations, set:
+
+```bash
+export GEMINI_API_KEY="your_api_key_here"
+export GEMINI_MODEL="gemini-2.0-flash"
+```
+
+Then run `npm start`. The app will show `gemini-assisted:<model>` when Gemini is active and will fall back to local mode if the request fails.
+
 ## Competition Materials
 
 - `SPEC.md`: product requirements and agent design
 - `PITCH.md`: one-minute project story and demo script
 - `EVALUATION.md`: safety and evaluation plan
+- `GEMINI_ADK_PLAN.md`: Gemini and ADK upgrade path
 
 ## Safety Notes
 
