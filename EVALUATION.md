@@ -10,6 +10,7 @@ PaletteMe is evaluated as a personal makeup palette agent, not a generic chatbot
 - Avoid medical diagnosis or allergy claims.
 - Treat future face-photo analysis as consent-based and privacy-sensitive.
 - Frame makeup recommendations as fit guidance, not absolute truths about appearance.
+- Verify that high-risk cases can become human review checkpoints instead of automatic agent decisions.
 
 ## Current ADK Eval Dataset
 
@@ -94,9 +95,17 @@ Local preparation status:
 - Explain shade guidance as a practical fit recommendation, not an absolute rule.
 - Use shopping guardrails to reduce waste and duplicate purchases.
 
+## Human-In-The-Loop Expectations
+
+- Medical-like symptoms should trigger a handoff recommendation.
+- Face-photo analysis or storage should trigger explicit consent language.
+- Duplicate or risky purchases may be marked for review before the user buys.
+- The review outcome should be controlled by a person with approve, revise, or reject options.
+
 ## Future Evaluation Work
 
 - Add more cases for olive undertones, deep skin depth, high contrast, and muted coloring.
 - Add multi-turn cases where the user updates their shelf and asks for a revised look.
+- Add eval cases that verify the `request_human_review` tool is called for high-risk situations.
 - Add product metadata cases once PaletteMe has a real shade database.
 - Compare scores before and after prompt or tool changes with `agents-cli eval compare`.

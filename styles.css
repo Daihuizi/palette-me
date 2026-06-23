@@ -177,6 +177,7 @@ select {
 
 .story-band,
 .agent-band,
+.hitl-band,
 .safety-band,
 .judge-band {
   padding: 50px clamp(18px, 4vw, 52px);
@@ -189,6 +190,7 @@ select {
 
 .story-band h2,
 .agent-band h2,
+.hitl-band h2,
 .safety-band h2 {
   max-width: 760px;
   margin: 0;
@@ -198,6 +200,7 @@ select {
 
 .story-grid,
 .skill-grid,
+.review-flow,
 .rule-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -207,6 +210,7 @@ select {
 
 .story-grid article,
 .skill-grid article,
+.review-flow article,
 .rule-grid article {
   min-height: 170px;
   border: 1px solid var(--line);
@@ -223,6 +227,7 @@ select {
 
 .story-grid h3,
 .skill-grid strong,
+.review-flow strong,
 .rule-grid strong {
   display: block;
   margin: 14px 0 8px;
@@ -231,6 +236,8 @@ select {
 
 .story-grid p,
 .agent-copy p,
+.hitl-copy p,
+.review-flow p,
 .safety-copy p,
 .skill-grid span,
 .rule-grid span {
@@ -471,6 +478,40 @@ button:hover {
   min-height: 130px;
 }
 
+.hitl-band {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.78fr) minmax(380px, 1.22fr);
+  gap: 28px;
+  align-items: start;
+  background: rgba(244, 229, 227, 0.44);
+  border-top: 1px solid var(--line);
+}
+
+.hitl-copy p {
+  max-width: 620px;
+  margin-top: 16px;
+}
+
+.review-flow {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 0;
+}
+
+.review-flow article {
+  min-height: 188px;
+  background: #fff;
+}
+
+.review-flow span {
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.review-flow strong {
+  color: var(--ink);
+}
+
 .safety-band {
   display: grid;
   grid-template-columns: minmax(280px, 0.76fr) minmax(360px, 1.24fr);
@@ -568,9 +609,11 @@ button:hover {
   .hero-grid,
   .story-grid,
   .agent-band,
+  .hitl-band,
   .safety-band,
   .judge-band,
   .skill-grid,
+  .review-flow,
   .rule-grid,
   .form-grid,
   .product-form,

@@ -54,7 +54,7 @@ agents-cli run "I have cool undertone, light skin, soft contrast, and I own taup
 3. Add an owned product to the makeup shelf.
 4. Generate the AI look plan.
 5. Use "Before I buy" to check a shade and show duplicate protection.
-6. Scroll to the Agent and Judge Demo sections to explain how the project maps to agent skills and evaluation.
+6. Scroll to the Agent, Human-in-the-loop, Safety, and Judge Demo sections to explain how the project maps to agent skills and evaluation.
 
 ## Agent Skills Used
 
@@ -62,6 +62,8 @@ agents-cli run "I have cool undertone, light skin, soft contrast, and I own taup
 - Shade Matching Skill
 - Look Builder Skill
 - Shopping Guard Skill
+- Safety Guard Skill
+- Human Review Skill
 
 ## Current Technical State
 
@@ -71,7 +73,7 @@ agents-cli run "I have cool undertone, light skin, soft contrast, and I own taup
 - Optional Gemini-assisted recommendation refinement
 - Node.js server with no external dependencies
 - Google ADK / Agents CLI prototype in `adk_app/`
-- ADK tools for undertone analysis, product matching, look building, and purchase checks
+- ADK tools for undertone analysis, product matching, look building, purchase checks, safety screening, and human review
 - Structured documents: `README.md`, `SPEC.md`, `PITCH.md`, `EVALUATION.md`
 
 ## Verification
@@ -92,3 +94,7 @@ agents-cli run "I have cool undertone, light skin, soft contrast, and I own taup
 ## Safety And Privacy
 
 PaletteMe should not diagnose skin conditions or make medical claims. Future photo-based analysis must require explicit user permission and should avoid storing face images unless the user opts in.
+
+## Human-In-The-Loop
+
+Sensitive cases should not be decided automatically. PaletteMe can create a pending review checkpoint when the user asks about medical-like symptoms, face-photo analysis or storage, or a risky product decision. The human review options are approve, revise, or reject.

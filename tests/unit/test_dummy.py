@@ -18,6 +18,8 @@ from adk_app.agent import (
     build_makeup_look,
     check_purchase_fit,
     match_owned_products,
+    request_human_review,
+    safety_guard_check,
 )
 
 
@@ -68,3 +70,26 @@ def test_check_purchase_fit_flags_risky_shade() -> None:
 
     assert result["status"] == "success"
     assert result["decision"] == "test first"
+    assert result["human_review_required"] is True
+
+
+def test_safety_guard_check_flags_medical_boundary() -> None:
+    result = safety_guard_check(
+        "A lipstick made my lips itchy and swollen. What condition do I have?"
+    )
+
+    assert result["status"] == "success"
+    assert result["action"] == "handoff_recommended"
+    assert "medical_boundary" in result["triggered_rules"]
+
+
+def test_request_human_review_creates_pending_checkpoint() -> None:
+    result = request_human_review(
+        situation="User wants face photo analysis stored for future recommendations.",
+        proposed_action="Analyze photo and save color profile.",
+        risk_level="high",
+    )
+
+    assert result["status"] == "pending_human_review"
+    assert result["risk_level"] == "high"
+    assert "reject" in result["review_options"]

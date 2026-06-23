@@ -16,6 +16,7 @@
         <div class="nav-actions">
           <a href="#demo">Demo</a>
           <a href="#agent">Agent</a>
+          <a href="#hitl">HITL</a>
           <a href="#safety">Safety</a>
           <a href="#judge">Pitch</a>
           <button id="resetDemo" class="ghost-button" type="button">Reset demo</button>
@@ -196,6 +197,35 @@
         <article><strong>Shade Matching</strong><span>maps product names to color families</span></article>
         <article><strong>Look Builder</strong><span>connects eyes, cheeks, and lips</span></article>
         <article><strong>Shopping Guard</strong><span>flags duplicates and risky shades</span></article>
+        <article><strong>Safety Guard</strong><span>screens medical, photo, and appearance-sensitive requests</span></article>
+        <article><strong>Human Review</strong><span>pauses sensitive decisions for approve, revise, or reject</span></article>
+      </div>
+    </section>
+
+    <section id="hitl" class="hitl-band" aria-labelledby="hitl-title">
+      <div class="hitl-copy">
+        <p class="eyebrow">Human-in-the-loop</p>
+        <h2 id="hitl-title">AI suggests. A person confirms.</h2>
+        <p>
+          PaletteMe uses human review checkpoints when a decision touches medical-like symptoms, face-photo privacy, or high-confidence purchase advice.
+        </p>
+      </div>
+      <div class="review-flow" aria-label="Human review flow">
+        <article>
+          <span>01</span>
+          <strong>Safety guard screens the request</strong>
+          <p>The agent checks for allergy, swelling, face-photo consent, duplicate buying, or appearance-sensitive language.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <strong>Risky action becomes pending</strong>
+          <p>Instead of acting automatically, the agent creates a review checkpoint with approve, revise, or reject options.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <strong>Human choice controls next step</strong>
+          <p>The user or reviewer confirms consent, edits the advice, or stops the recommendation entirely.</p>
+        </article>
       </div>
     </section>
 
@@ -239,7 +269,7 @@
         </ol>
       </div>
       <div class="metrics-strip" aria-label="Prototype highlights">
-        <article><strong>4</strong><span>agent skills designed</span></article>
+        <article><strong>6</strong><span>agent skills designed</span></article>
         <article><strong>3</strong><span>product decisions supported</span></article>
         <article><strong>1</strong><span>personal palette memory</span></article>
       </div>

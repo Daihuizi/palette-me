@@ -35,6 +35,8 @@ The first version is a web prototype for a competition demo. It focuses on the u
 - Shade matching skill: map product names and descriptions to color families.
 - Look building skill: combine eye, cheek, and lip colors into a cohesive makeup look.
 - Shopping guard skill: detect duplicates and warn when a product is unlikely to fit the user.
+- Safety guard skill: screen for medical-like symptoms, face-photo privacy, and appearance-sensitive requests.
+- Human review skill: pause sensitive decisions for approve, revise, or reject.
 - New launch research skill: compare new products against the user's existing palette.
 
 ## Safety And Privacy Rules
@@ -43,6 +45,12 @@ The first version is a web prototype for a competition demo. It focuses on the u
 - Make recommendations probabilistic, not absolute.
 - Avoid implying that one skin tone or feature is better than another.
 - If the user mentions allergy, irritation, or skin disease, recommend patch testing and professional advice.
+
+## Human-In-The-Loop Rules
+- The agent may suggest a beauty direction, but the user controls whether to save, buy, upload, or share.
+- Medical-like symptoms should create a handoff recommendation rather than an automated diagnosis.
+- Face-photo analysis should require explicit consent before analysis or storage.
+- High-impact purchase advice should be phrased as a reviewable recommendation, not an automatic decision.
 
 ## Success Criteria
 - A first-time visitor can understand the product within 30 seconds.
@@ -66,3 +74,4 @@ The first version is a web prototype for a competition demo. It focuses on the u
 - `agent/skills/shade-matching.mjs`: matches owned products against target shade families.
 - `agent/skills/look-builder.mjs`: turns profile and shelf data into a look recipe.
 - `agent/skills/shopping-guard.mjs`: checks duplicate and unsuitable product purchases.
+- `adk_app/agent.py`: includes ADK tools for safety guard checks and human review checkpoints.

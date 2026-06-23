@@ -233,7 +233,111 @@ def check_purchase_fit(
         "shade": shade_description,
         "decision": decision,
         "reason": reason,
+        "human_review_required": decision in {"pause", "test first"},
         "safety_note": "This is beauty guidance, not medical, dermatology, or allergy advice.",
+    }
+
+
+def safety_guard_check(user_message: str) -> dict:
+    """Check whether a user request needs a safety boundary or human review.
+
+    Args:
+        user_message: The user's message or request to screen.
+
+    Returns:
+        A guardrail result that says whether the agent can answer normally,
+        should add a safety boundary, or should request human review.
+    """
+
+    text = user_message.lower()
+    medical_terms = [
+        "allergy",
+        "allergic",
+        "swollen",
+        "swelling",
+        "itchy",
+        "rash",
+        "infection",
+        "eczema",
+        "dermatitis",
+        "skin disease",
+        "diagnose",
+    ]
+    photo_terms = ["photo", "face image", "selfie", "upload my face", "face photo"]
+    appearance_terms = ["ugly", "fix my face", "bad skin tone", "look worse"]
+
+    triggered = []
+    if any(term in text for term in medical_terms):
+        triggered.append("medical_boundary")
+    if any(term in text for term in photo_terms):
+        triggered.append("photo_privacy_consent")
+    if any(term in text for term in appearance_terms):
+        triggered.append("appearance_sensitivity")
+
+    if "medical_boundary" in triggered:
+        action = "handoff_recommended"
+        response_boundary = (
+            "Do not diagnose or identify a medical cause. Encourage the user to "
+            "stop using the product and consult a qualified professional for "
+            "swelling, allergy, or serious irritation."
+        )
+    elif "photo_privacy_consent" in triggered:
+        action = "consent_required"
+        response_boundary = (
+            "Explain that photo analysis requires explicit consent, clear purpose, "
+            "minimal storage, and an option to delete images."
+        )
+    elif "appearance_sensitivity" in triggered:
+        action = "answer_with_care"
+        response_boundary = (
+            "Avoid appearance judgment. Reframe advice around user preference, "
+            "comfort, color harmony, and confidence."
+        )
+    else:
+        action = "proceed"
+        response_boundary = "No special safety boundary detected."
+
+    return {
+        "status": "success",
+        "action": action,
+        "triggered_rules": triggered,
+        "response_boundary": response_boundary,
+    }
+
+
+def request_human_review(
+    situation: str,
+    proposed_action: str,
+    risk_level: str,
+) -> dict:
+    """Create a human-in-the-loop review checkpoint for sensitive decisions.
+
+    Args:
+        situation: The user situation that needs review.
+        proposed_action: What the agent would do if approved.
+        risk_level: Low, medium, or high risk.
+
+    Returns:
+        A pending review record that the UI or operator can approve, revise, or reject.
+    """
+
+    normalized_risk = risk_level.lower()
+    if normalized_risk not in {"low", "medium", "high"}:
+        normalized_risk = "medium"
+
+    next_steps = {
+        "low": "User can confirm the recommendation before saving or buying.",
+        "medium": "Ask the user to confirm context, preferences, and comfort before proceeding.",
+        "high": "Pause the agent action and route the user to a qualified person or explicit consent step.",
+    }
+
+    return {
+        "status": "pending_human_review",
+        "situation": situation,
+        "proposed_action": proposed_action,
+        "risk_level": normalized_risk,
+        "review_options": ["approve", "revise", "reject"],
+        "recommended_next_step": next_steps[normalized_risk],
     }
 
 
@@ -245,10 +349,15 @@ Your job:
 - Analyze undertone, depth, contrast, style goals, and owned products.
 - Recommend coordinated eyeshadow, blush, and lip color families.
 - Help users avoid buying duplicate or mismatched products.
+- Use safety guardrails and human review checkpoints for sensitive requests.
 
 How to work:
+- First consider whether the request needs safety_guard_check.
 - Use the available tools when the user asks for shade analysis, product sorting,
   look building, or purchase decisions.
+- Use request_human_review when the user asks for medical-like guidance, photo
+  analysis/storage, or a high-impact purchase decision that should not be made
+  automatically.
 - Prefer practical, wearable recommendations over vague beauty language.
 - Explain uncertainty clearly when undertone, lighting, skin depth, or product
   details are missing.
@@ -273,6 +382,8 @@ root_agent = Agent(
         match_owned_products,
         build_makeup_look,
         check_purchase_fit,
+        safety_guard_check,
+        request_human_review,
     ],
 )
 

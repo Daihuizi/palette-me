@@ -25,6 +25,8 @@ The production version would use an AI agent with reusable skills:
 - Shade Matching Skill: maps product descriptions to color families.
 - Look Builder Skill: creates cohesive eye, cheek, and lip combinations.
 - Shopping Guard Skill: checks whether a new product overlaps with the user's current palette.
+- Safety Guard Skill: detects medical-like, photo-privacy, and appearance-sensitive requests.
+- Human Review Skill: creates approve / revise / reject checkpoints for sensitive decisions.
 - New Launch Research Skill: compares upcoming products with the user's saved preferences.
 
 ## Why It Matters
@@ -40,6 +42,7 @@ Current prototype:
 - Local simulated agent API with reusable skills
 - Gemini-ready refinement layer with local fallback
 - ADK / Agents CLI prototype with PaletteMe tools
+- Human-in-the-loop review checkpoints and safety guard tools
 - Competition-ready product story and clickable demo
 
 Future version:
@@ -144,3 +147,7 @@ Then run `npm start`. PaletteMe uses Google's official `@google/genai` SDK. The 
 ## Safety Notes
 
 PaletteMe should not diagnose skin conditions or make medical claims. Sensitive data such as face photos, allergies, and skin concerns should be handled with explicit permission and privacy-first storage rules.
+
+## Human-In-The-Loop Notes
+
+PaletteMe does not let the agent automatically make sensitive decisions. Medical-like symptoms, face-photo analysis, storage consent, and high-impact purchase advice can trigger a pending human review checkpoint with three outcomes: approve, revise, or reject.
