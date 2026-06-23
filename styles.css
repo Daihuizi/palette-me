@@ -177,6 +177,7 @@ select {
 
 .story-band,
 .agent-band,
+.safety-band,
 .judge-band {
   padding: 50px clamp(18px, 4vw, 52px);
 }
@@ -187,7 +188,8 @@ select {
 }
 
 .story-band h2,
-.agent-band h2 {
+.agent-band h2,
+.safety-band h2 {
   max-width: 760px;
   margin: 0;
   font-size: clamp(28px, 4vw, 46px);
@@ -195,7 +197,8 @@ select {
 }
 
 .story-grid,
-.skill-grid {
+.skill-grid,
+.rule-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
@@ -203,7 +206,8 @@ select {
 }
 
 .story-grid article,
-.skill-grid article {
+.skill-grid article,
+.rule-grid article {
   min-height: 170px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -218,7 +222,8 @@ select {
 }
 
 .story-grid h3,
-.skill-grid strong {
+.skill-grid strong,
+.rule-grid strong {
   display: block;
   margin: 14px 0 8px;
   font-size: 18px;
@@ -226,7 +231,9 @@ select {
 
 .story-grid p,
 .agent-copy p,
-.skill-grid span {
+.safety-copy p,
+.skill-grid span,
+.rule-grid span {
   margin: 0;
   color: var(--muted);
   line-height: 1.55;
@@ -464,6 +471,37 @@ button:hover {
   min-height: 130px;
 }
 
+.safety-band {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.76fr) minmax(360px, 1.24fr);
+  gap: 28px;
+  align-items: start;
+  background: rgba(255, 255, 255, 0.62);
+  border-block: 1px solid var(--line);
+}
+
+.safety-copy p {
+  max-width: 620px;
+  margin-top: 16px;
+}
+
+.rule-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 0;
+}
+
+.rule-grid article {
+  min-height: 142px;
+  background:
+    linear-gradient(180deg, rgba(109, 124, 99, 0.09), rgba(255, 255, 255, 0) 58%),
+    #fff;
+}
+
+.rule-grid strong {
+  margin-top: 0;
+  color: var(--ink);
+}
+
 .judge-band {
   display: grid;
   grid-template-columns: minmax(300px, 1fr) minmax(280px, 0.8fr);
@@ -530,8 +568,10 @@ button:hover {
   .hero-grid,
   .story-grid,
   .agent-band,
+  .safety-band,
   .judge-band,
   .skill-grid,
+  .rule-grid,
   .form-grid,
   .product-form,
   .checker-form {
