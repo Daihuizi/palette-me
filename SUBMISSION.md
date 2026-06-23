@@ -47,6 +47,12 @@ Run the ADK prototype:
 agents-cli run "I have cool undertone, light skin, soft contrast, and I own taupe eyeshadow plus rose nude lipstick. Build me a daily PaletteMe look."
 ```
 
+Live demo script:
+
+```text
+DEMO_SCRIPT.md
+```
+
 ## Demo Flow
 
 1. Show the hero section and explain the pain point: makeup users need a personal color memory.
@@ -93,6 +99,7 @@ User -> Web UI -> Local Node Agent API -> Local Skills -> Gemini refinement
 - Google ADK / Agents CLI prototype in `adk_app/`
 - ADK tools for undertone analysis, product matching, look building, purchase checks, safety screening, and human review
 - Structured documents: `README.md`, `SPEC.md`, `PITCH.md`, `EVALUATION.md`
+- Live demo guide: `DEMO_SCRIPT.md`
 - Technical mapping document: `TECHNICAL_MAPPING.md`
 
 ## Verification

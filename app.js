@@ -2,35 +2,46 @@ const storageKey = "palette-me-demo";
 
 const defaultState = {
   profile: {
-    undertone: "neutral",
-    depth: "medium",
+    undertone: "cool",
+    depth: "light",
     skinType: "combination",
     style: "soft",
-    occasion: "school, work, and casual weekends",
+    occasion: "daily school, work, and weekend coffee dates",
   },
   products: [
     {
       id: crypto.randomUUID(),
       category: "Eye shadow",
-      name: "Everyday Rose Palette",
-      shade: "rose brown",
+      name: "Soft Taupe Eye Quad",
+      shade: "cool taupe",
       finish: "matte",
     },
     {
       id: crypto.randomUUID(),
       category: "Blush",
-      name: "Soft Petal Blush",
-      shade: "dusty pink",
+      name: "Dusty Rose Cream Blush",
+      shade: "dusty rose",
       finish: "satin",
     },
     {
       id: crypto.randomUUID(),
       category: "Lipstick",
-      name: "MLBB Lip Tint",
+      name: "Rose Nude Lip Tint",
       shade: "muted rose",
       finish: "glossy",
     },
+    {
+      id: crypto.randomUUID(),
+      category: "Base",
+      name: "Soft Focus Cushion",
+      shade: "neutral ivory",
+      finish: "satin",
+    },
   ],
+  wish: {
+    product: "Viral Coral Lipstick",
+    shade: "bright orange coral",
+  },
 };
 
 let state = loadState();
@@ -60,6 +71,8 @@ function hydrateProfile() {
   profileIds.forEach((id) => {
     document.querySelector(`#${id}`).value = state.profile[id];
   });
+  document.querySelector("#wishProduct").value = state.wish?.product || defaultState.wish.product;
+  document.querySelector("#wishShade").value = state.wish?.shade || defaultState.wish.shade;
 }
 
 function shadeColor(shade) {
@@ -276,6 +289,8 @@ document.querySelector("#checkerForm").addEventListener("submit", (event) => {
   const product = document.querySelector("#wishProduct").value.trim() || "This product";
   const shade = document.querySelector("#wishShade").value.trim();
   if (!shade) return;
+  state.wish = { product, shade };
+  saveState();
   buyAdvice.textContent = "Checking with PaletteMe Agent...";
   requestPurchaseCheck(product, shade).then((agentResult) => {
     if (agentResult) {

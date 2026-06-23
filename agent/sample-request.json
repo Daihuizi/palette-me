@@ -1,29 +1,35 @@
 {
   "profile": {
-    "undertone": "neutral",
-    "depth": "medium",
+    "undertone": "cool",
+    "depth": "light",
     "skinType": "combination",
     "style": "soft",
-    "occasion": "school, work, and casual weekends"
+    "occasion": "daily school, work, and weekend coffee dates"
   },
   "products": [
     {
       "category": "Eye shadow",
-      "name": "Everyday Rose Palette",
-      "shade": "rose brown",
+      "name": "Soft Taupe Eye Quad",
+      "shade": "cool taupe",
       "finish": "matte"
     },
     {
       "category": "Blush",
-      "name": "Soft Petal Blush",
-      "shade": "dusty pink",
+      "name": "Dusty Rose Cream Blush",
+      "shade": "dusty rose",
       "finish": "satin"
     },
     {
       "category": "Lipstick",
-      "name": "MLBB Lip Tint",
+      "name": "Rose Nude Lip Tint",
       "shade": "muted rose",
       "finish": "glossy"
+    },
+    {
+      "category": "Base",
+      "name": "Soft Focus Cushion",
+      "shade": "neutral ivory",
+      "finish": "satin"
     }
   ]
 }
