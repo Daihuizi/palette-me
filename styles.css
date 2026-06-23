@@ -179,6 +179,7 @@ select {
 .agent-band,
 .hitl-band,
 .safety-band,
+.tech-map-band,
 .judge-band {
   padding: 50px clamp(18px, 4vw, 52px);
 }
@@ -191,6 +192,7 @@ select {
 .story-band h2,
 .agent-band h2,
 .hitl-band h2,
+.tech-map-band h2,
 .safety-band h2 {
   max-width: 760px;
   margin: 0;
@@ -201,6 +203,7 @@ select {
 .story-grid,
 .skill-grid,
 .review-flow,
+.tech-map-list,
 .rule-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -211,6 +214,7 @@ select {
 .story-grid article,
 .skill-grid article,
 .review-flow article,
+.tech-map-list article,
 .rule-grid article {
   min-height: 170px;
   border: 1px solid var(--line);
@@ -228,6 +232,7 @@ select {
 .story-grid h3,
 .skill-grid strong,
 .review-flow strong,
+.tech-map-list strong,
 .rule-grid strong {
   display: block;
   margin: 14px 0 8px;
@@ -240,6 +245,7 @@ select {
 .review-flow p,
 .safety-copy p,
 .skill-grid span,
+.tech-map-list span,
 .rule-grid span {
   margin: 0;
   color: var(--muted);
@@ -543,6 +549,24 @@ button:hover {
   color: var(--ink);
 }
 
+.tech-map-band {
+  background: rgba(255, 255, 255, 0.58);
+  border-bottom: 1px solid var(--line);
+}
+
+.tech-map-list {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.tech-map-list article {
+  min-height: 156px;
+}
+
+.tech-map-list strong {
+  margin-top: 0;
+  color: var(--gold);
+}
+
 .judge-band {
   display: grid;
   grid-template-columns: minmax(300px, 1fr) minmax(280px, 0.8fr);
@@ -611,9 +635,11 @@ button:hover {
   .agent-band,
   .hitl-band,
   .safety-band,
+  .tech-map-band,
   .judge-band,
   .skill-grid,
   .review-flow,
+  .tech-map-list,
   .rule-grid,
   .form-grid,
   .product-form,

@@ -26,7 +26,8 @@ Instead of only recommending more products, PaletteMe first understands the user
 3. Add a product to the makeup shelf, such as "Velvet Peach Blush" with shade "peach coral."
 4. Generate the AI look plan and show the coordinated eye, cheek, and lip recommendation.
 5. Use "Before I buy" to check a similar shade and show how PaletteMe warns about duplicate purchases.
-6. Explain that the current demo simulates the agent locally, while the production version would connect to Gemini, ADK, Google Cloud, and product shade data.
+6. Scroll to Agent, Human-in-the-loop, Safety, and Training Camp Map to show how the project applies the course concepts.
+7. Explain that the current demo has a local agent API, optional Gemini refinement, ADK tools, eval cases, and a Cloud Run deployment path.
 
 ## Why This Uses Agent Thinking
 
@@ -37,8 +38,17 @@ PaletteMe is not just a chatbot. It is a task-focused assistant with reusable sk
 - shopping guardrails
 - product research
 - safety and evaluation
+- human review checkpoints
 
 The agent's job is to reason over the user's own makeup inventory, not only answer generic beauty questions.
+
+## Training Camp Concepts
+
+- Unit 1: Vibe coding and product framing from a real user pain point.
+- Unit 2: Tool interoperability between the web app, local API, Gemini SDK, and ADK.
+- Unit 3: Reusable agent skills for analysis, matching, look building, and shopping checks.
+- Unit 4: Safety guards, human-in-the-loop checkpoints, and eval cases.
+- Unit 5: Spec-driven project materials, tests, GitHub history, and deployment plan.
 
 ## Impact
 

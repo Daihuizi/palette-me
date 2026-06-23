@@ -65,6 +65,24 @@ agents-cli run "I have cool undertone, light skin, soft contrast, and I own taup
 - Safety Guard Skill
 - Human Review Skill
 
+## Training Camp Concepts Used
+
+- Unit 1: Vibe coding from a personal pain point into a working prototype.
+- Unit 2: Agent tools and interoperability across Web UI, Node local API, Gemini SDK, and ADK.
+- Unit 3: Reusable agent skills instead of one large prompt.
+- Unit 4: Safety guards, human-in-the-loop checkpoints, and eval cases.
+- Unit 5: Spec-driven project structure with docs, tests, GitHub commits, and deployment path.
+
+## Architecture Summary
+
+```text
+User -> Web UI -> Local Node Agent API -> Local Skills -> Gemini refinement
+                         |
+                         +-> ADK prototype tools -> Safety Guard -> Human Review
+                         |
+                         +-> Eval dataset and scoring config
+```
+
 ## Current Technical State
 
 - Static web UI
@@ -75,6 +93,7 @@ agents-cli run "I have cool undertone, light skin, soft contrast, and I own taup
 - Google ADK / Agents CLI prototype in `adk_app/`
 - ADK tools for undertone analysis, product matching, look building, purchase checks, safety screening, and human review
 - Structured documents: `README.md`, `SPEC.md`, `PITCH.md`, `EVALUATION.md`
+- Technical mapping document: `TECHNICAL_MAPPING.md`
 
 ## Verification
 

@@ -45,6 +45,14 @@ Current prototype:
 - Human-in-the-loop review checkpoints and safety guard tools
 - Competition-ready product story and clickable demo
 
+Training camp mapping:
+
+- Unit 1: Agents and vibe coding through product spec and working demo.
+- Unit 2: Agent tools and interoperability through web UI, local API, Gemini SDK, and ADK prototype.
+- Unit 3: Agent skills through reusable shade, look, shopping, safety, and human-review tools.
+- Unit 4: Security and evaluation through safety rules, HITL checkpoints, and eval cases.
+- Unit 5: Spec-driven development through docs, tests, GitHub structure, and deployment-ready scaffold.
+
 Future version:
 
 - Google Cloud deployment
@@ -142,6 +150,7 @@ Then run `npm start`. PaletteMe uses Google's official `@google/genai` SDK. The 
 - `PITCH.md`: one-minute project story and demo script
 - `EVALUATION.md`: safety and evaluation plan
 - `GEMINI_ADK_PLAN.md`: Gemini and ADK upgrade path
+- `TECHNICAL_MAPPING.md`: training-camp concept mapping and architecture
 - `adk_app/agent.py`: ADK root agent with PaletteMe tools
 
 ## Safety Notes
