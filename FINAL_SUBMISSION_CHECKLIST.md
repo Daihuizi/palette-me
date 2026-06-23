@@ -7,7 +7,7 @@
 - GitHub repository: `https://github.com/Daihuizi/palette-me`
 - Local demo: `http://127.0.0.1:8787`
 - GitHub Pages live demo: `https://daihuizi.github.io/palette-me/`
-- Video submission: add the final uploaded video link here
+- Video submission: https://youtu.be/dmeHJhktWMM
 
 ## Kaggle Submission Deadline
 

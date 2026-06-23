@@ -57,7 +57,7 @@ User
 
 - Live demo: https://daihuizi.github.io/palette-me/
 - GitHub repository: https://github.com/Daihuizi/palette-me
-- Video demo: add video link here after recording
+- Video demo: https://youtu.be/dmeHJhktWMM
 
 ## Demo Walkthrough
 
