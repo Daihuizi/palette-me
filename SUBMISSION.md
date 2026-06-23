@@ -51,6 +51,7 @@ Live demo script:
 
 ```text
 DEMO_SCRIPT.md
+VIDEO_SUBMISSION_SCRIPT.md
 ```
 
 ## Demo Flow
@@ -100,6 +101,7 @@ User -> Web UI -> Local Node Agent API -> Local Skills -> Gemini refinement
 - ADK tools for undertone analysis, product matching, look building, purchase checks, safety screening, and human review
 - Structured documents: `README.md`, `SPEC.md`, `PITCH.md`, `EVALUATION.md`
 - Live demo guide: `DEMO_SCRIPT.md`
+- Video recording guide: `VIDEO_SUBMISSION_SCRIPT.md`
 - Technical mapping document: `TECHNICAL_MAPPING.md`
 
 ## Verification

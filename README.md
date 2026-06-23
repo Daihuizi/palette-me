@@ -68,7 +68,7 @@ Future version:
 4. Check the default viral coral lipstick before buying it.
 5. Scroll through Agent, HITL, Safety, Training Camp Map, and Judge Demo.
 
-For a spoken walkthrough, see `DEMO_SCRIPT.md`.
+For a spoken walkthrough, see `DEMO_SCRIPT.md`. For a timed recording plan, see `VIDEO_SUBMISSION_SCRIPT.md`.
 
 ## Run Locally
 
@@ -152,6 +152,7 @@ Then run `npm start`. PaletteMe uses Google's official `@google/genai` SDK. The 
 - `SPEC.md`: product requirements and agent design
 - `PITCH.md`: one-minute project story and demo script
 - `DEMO_SCRIPT.md`: 60- and 90-second live demo scripts
+- `VIDEO_SUBMISSION_SCRIPT.md`: timed video submission recording script
 - `EVALUATION.md`: safety and evaluation plan
 - `GEMINI_ADK_PLAN.md`: Gemini and ADK upgrade path
 - `TECHNICAL_MAPPING.md`: training-camp concept mapping and architecture
