@@ -1,169 +1,151 @@
 # PaletteMe
 
-PaletteMe is an AI-powered personal makeup palette assistant. It helps users record the beauty products they already own, understand which shades fit their personal color profile, build cohesive looks, and avoid buying duplicate or unsuitable shades.
+PaletteMe is an AI personal makeup palette assistant. It helps users record the makeup they already own, understand their best shade families, build coordinated looks, and check new products before buying another shade that does not fit.
 
-## Problem
+![PaletteMe hero image](assets/vanity-palette-hero.png)
 
-Many makeup users have the same frustration: a product looks beautiful online, but it does not look right on their own face. Over time, they collect palettes, blushes, and lipsticks that do not work together, then spend more time searching for shade advice or returning products.
+## Why This Project
 
-PaletteMe turns a scattered makeup shelf into a personal color system.
+Many makeup users buy products that look beautiful online but do not work with their own undertone, skin depth, style, or existing collection. The result is wasted money, returns, cluttered drawers, and repeated searching for shade advice.
 
-## Solution
+PaletteMe turns that messy makeup shelf into a personal color system.
 
-Users create a beauty profile, log their existing products, and ask PaletteMe for:
+## What The Demo Shows
 
-- best shade families for their undertone and style
-- a coordinated eye, cheek, and lip look
-- duplicate warnings before buying a new product
-- shade-fit explanations that help the user learn their own palette
+- A beauty profile with undertone, skin depth, skin type, style, and occasion.
+- A saved makeup shelf for eye shadow, blush, lipstick, and base products.
+- An AI look plan that updates when the user changes their profile.
+- A before-buying guard that checks a new product against the user's palette.
+- Safer alternative shades when a product looks risky.
+- A human-in-the-loop checkpoint for approve, revise, or reject decisions.
+- A small privacy and safety boundary: local-first memory, consent before future photo analysis, and no skin diagnosis.
 
-## AI Agent Concept
+## Live Demo
 
-The production version would use an AI agent with reusable skills:
-
-- Undertone Analysis Skill: understands warm, cool, neutral, olive, and muted directions.
-- Shade Matching Skill: maps product descriptions to color families.
-- Look Builder Skill: creates cohesive eye, cheek, and lip combinations.
-- Shopping Guard Skill: checks whether a new product overlaps with the user's current palette.
-- Safety Guard Skill: detects medical-like, photo-privacy, and appearance-sensitive requests.
-- Human Review Skill: creates approve / revise / reject checkpoints for sensitive decisions.
-- New Launch Research Skill: compares upcoming products with the user's saved preferences.
-
-## Why It Matters
-
-PaletteMe is designed for a real everyday beauty problem: buying makeup is emotional, visual, and personal, but most recommendation tools are generic. A personal palette memory can reduce waste, save money, and help users feel more confident in their own style.
-
-## Tech Direction
-
-Current prototype:
-
-- Static HTML, CSS, and JavaScript
-- Local browser storage
-- Local simulated agent API with reusable skills
-- Gemini-ready refinement layer with local fallback
-- ADK / Agents CLI prototype with PaletteMe tools
-- Human-in-the-loop review checkpoints and safety guard tools
-- Competition-ready product story and clickable demo
-
-Training camp mapping:
-
-- Unit 1: Agents and vibe coding through product spec and working demo.
-- Unit 2: Agent tools and interoperability through web UI, local API, Gemini SDK, and ADK prototype.
-- Unit 3: Agent skills through reusable shade, look, shopping, safety, and human-review tools.
-- Unit 4: Security and evaluation through safety rules, HITL checkpoints, and eval cases.
-- Unit 5: Spec-driven development through docs, tests, GitHub structure, and deployment-ready scaffold.
-
-Future version:
-
-- Google Cloud deployment
-- Optional photo-based color analysis
-- Product database and shade metadata
-- Local evaluations for recommendation quality and safety
-
-## Demo Flow
-
-1. Fill out or reset the beauty profile.
-2. Review the default demo shelf.
-3. Generate a look plan.
-4. Change undertone to show the AI look plan updating live.
-5. Check the default viral coral lipstick before buying it.
-6. Show safer alternative shades and the human review checkpoint.
-7. End on the small privacy and safety footer.
-
-For a spoken walkthrough, see `DEMO_SCRIPT.md`. For a timed recording plan, see `VIDEO_SUBMISSION_SCRIPT.md`.
-
-## Run Locally
-
-Open the static file directly for the basic demo, or run the local agent server:
-
-```bash
-npm start
-```
-
-Then open:
+Local demo:
 
 ```text
 http://127.0.0.1:8787
 ```
 
-The local server exposes:
+GitHub Pages target after enabling Pages:
 
 ```text
-POST /api/recommendation
-POST /api/purchase-check
+https://daihuizi.github.io/palette-me/
 ```
 
-You can also run a sample agent request:
+The GitHub Pages version runs as a static demo with local browser logic. The local Node server adds the Agent API and optional Gemini refinement.
+
+## 60-Second Demo Flow
+
+1. Open PaletteMe and explain the pain point: makeup recommendations are personal, but most advice is generic.
+2. Show the default profile and makeup shelf.
+3. Click `Generate look`.
+4. Change `Undertone` from `Cool` to `Warm`, then back to `Cool`, to show live personalization.
+5. Use `Before I buy` with the default viral coral lipstick.
+6. Point to the safer alternative shades.
+7. Show the `Pending human review` panel and click `Revise`.
+8. End on the privacy and safety footer.
+
+## Agent Architecture
+
+```text
+Web UI
+  -> Local browser state
+  -> Node Agent API
+      -> Undertone Analysis Skill
+      -> Shade Matching Skill
+      -> Look Builder Skill
+      -> Shopping Guard Skill
+      -> Safety Guard / Human Review concepts
+      -> Optional Gemini refinement
+  -> ADK prototype and eval-ready tests
+```
+
+## Training Camp Concepts Applied
+
+- Unit 1: Vibe coding from a real personal pain point into a working product demo.
+- Unit 2: Agent tools and interoperability across Web UI, Node API, Gemini SDK, and ADK.
+- Unit 3: Reusable skills for undertone analysis, shade matching, look building, and shopping checks.
+- Unit 4: Safety boundaries, human-in-the-loop checkpoints, and evaluation cases.
+- Unit 5: Spec-driven development with docs, tests, GitHub history, and deployment path.
+
+## Tech Stack
+
+- Frontend: HTML, CSS, JavaScript
+- Local server: Node.js
+- AI refinement: Google Gemini via `@google/genai`
+- Agent prototype: Google ADK / Agents CLI
+- Storage: local browser storage for the prototype
+- Tests: Python `pytest` for deterministic ADK tool tests
+- Deployment path: GitHub Pages for static demo, Cloud Run path documented for agent service
+
+## Run Locally
+
+```bash
+npm start
+```
+
+Open:
+
+```text
+http://127.0.0.1:8787
+```
+
+Run a sample local agent request:
 
 ```bash
 npm run agent:sample
 ```
 
-## Run The ADK Prototype
-
-Install the Python ADK environment:
-
-```bash
-agents-cli install
-```
-
-Run a PaletteMe ADK prompt:
-
-```bash
-agents-cli run "I have cool undertone, light skin, soft contrast, and I own taupe eyeshadow plus rose nude lipstick. Build me a daily PaletteMe look."
-```
-
-Run the deterministic ADK tool tests:
-
-```bash
-uv run pytest tests/unit/test_dummy.py
-```
-
-Run the ADK streaming integration test:
-
-```bash
-uv run pytest tests/integration/test_agent.py
-```
-
-The streaming integration test is skipped by default because it makes a live
-model call. To run it manually:
-
-```bash
-RUN_LIVE_ADK_TESTS=1 uv run pytest tests/integration/test_agent.py
-```
-
 ## Optional Gemini Mode
 
-PaletteMe works without an API key. To let Gemini refine the local agent recommendations, set:
+PaletteMe works without an API key. To let Gemini refine recommendations, create a local `.env` file:
 
 ```bash
 cp .env.example .env
 ```
 
-Then edit `.env`:
+Then add:
 
 ```text
 GEMINI_API_KEY=your_api_key_here
 GEMINI_MODEL=gemini-3.5-flash
 ```
 
-Then run `npm start`. PaletteMe uses Google's official `@google/genai` SDK. The app will show `gemini-assisted:<model>` when Gemini is active and will fall back to local mode if the request fails. The `.env` file is ignored by Git and should not be committed.
+`.env` is ignored by Git and should not be committed.
+
+## Run ADK And Tests
+
+Run the ADK prototype:
+
+```bash
+agents-cli run "I have cool undertone, light skin, soft contrast, and I own taupe eyeshadow plus rose nude lipstick. Build me a daily PaletteMe look."
+```
+
+Run deterministic tests:
+
+```bash
+uv run pytest tests/unit/test_dummy.py tests/integration/test_agent.py
+```
+
+The live ADK streaming test is opt-in:
+
+```bash
+RUN_LIVE_ADK_TESTS=1 uv run pytest tests/integration/test_agent.py
+```
 
 ## Competition Materials
 
+- `SUBMISSION.md`: project summary for judges
+- `VIDEO_SUBMISSION_SCRIPT.md`: final recording script and click path
+- `DEMO_SCRIPT.md`: live demo practice script
 - `SPEC.md`: product requirements and agent design
-- `PITCH.md`: one-minute project story and demo script
-- `DEMO_SCRIPT.md`: 60- and 90-second live demo scripts
-- `VIDEO_SUBMISSION_SCRIPT.md`: timed video submission recording script
+- `TECHNICAL_MAPPING.md`: training-camp concept mapping
 - `EVALUATION.md`: safety and evaluation plan
 - `GEMINI_ADK_PLAN.md`: Gemini and ADK upgrade path
-- `TECHNICAL_MAPPING.md`: training-camp concept mapping and architecture
-- `adk_app/agent.py`: ADK root agent with PaletteMe tools
+- `FINAL_SUBMISSION_CHECKLIST.md`: final before-submit checklist
 
-## Safety Notes
+## Safety And Privacy
 
-PaletteMe should not diagnose skin conditions or make medical claims. Sensitive data such as face photos, allergies, and skin concerns should be handled with explicit permission and privacy-first storage rules.
-
-## Human-In-The-Loop Notes
-
-PaletteMe does not let the agent automatically make sensitive decisions. Medical-like symptoms, face-photo analysis, storage consent, and high-impact purchase advice can trigger a pending human review checkpoint with three outcomes: approve, revise, or reject.
+PaletteMe gives color and shopping guidance only. It does not diagnose skin conditions, should request explicit consent before any future face-photo analysis, and uses human review checkpoints when advice could affect sensitive decisions.
