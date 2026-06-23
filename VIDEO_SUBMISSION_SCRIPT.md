@@ -96,49 +96,50 @@ Say:
 
 Next, I check a viral bright orange coral lipstick before buying it. Because this user has a cool palette, PaletteMe can warn that the color may be risky or unnecessary before the user wastes money.
 
+It also suggests safer alternative shades, so the assistant is not only blocking a purchase; it is helping the user make a better choice.
+
 Action:
 
 - Keep the default:
   - `Viral Coral Lipstick`
   - `bright orange coral`
 - Click `Check`.
-- Pause on the result and the `Pending human review` panel.
+- Pause on the result, the safer alternatives, and the `Pending human review` panel.
 - Click `Revise` to show that the human can change the next step.
 
 Say:
 
 This is the human-in-the-loop moment. The AI can suggest that this purchase is risky, but the final action is not automatic. A person can approve, revise, or reject the recommendation.
 
-### 48-62s: Agent Skills, HITL, Safety
+### 48-62s: Product Proof
 
 Screen:
 
-- Scroll to `Agent design`.
-- Continue to `Human-in-the-loop`.
-- Continue to `Safety and privacy rules`.
+- Stay on the live demo.
+- Point to the live profile analysis, purchase result, and human review panel.
 
 Say:
 
-Under the demo, the project shows its agent architecture: undertone analysis, shade matching, look building, shopping guard, safety guard, and human review. Sensitive cases can become approve, revise, or reject checkpoints instead of automatic AI decisions.
+The technical ideas are shown through the product behavior. The profile change shows dynamic personalization, the purchase check shows shopping guardrails, and the review panel shows human-in-the-loop control for risky decisions.
 
 Action:
 
-- Scroll steadily.
-- Do not stop too long on each card.
+- Keep the product flow visible.
+- Move the cursor only to the evidence you are naming.
 
 ### 62-75s: Close
 
 Screen:
 
-- End around `Safety and privacy rules`, or return briefly to the demo panel.
+- End around the demo panel or the privacy and safety footer.
 
 Say:
 
-The training camp concepts are built into the product behavior: reusable skills power the look plan, safety guards shape the boundaries, human-in-the-loop controls risky decisions, and eval-ready cases help test the agent. PaletteMe is a product prototype with a path to deployment, not just a static page.
+The training camp concepts are built into the product behavior, while the repository documents the agent skills, ADK prototype, safety guards, and eval-ready cases. PaletteMe is a product prototype with a path to deployment, not just a static page.
 
 Action:
 
-- Pause on the safety cards or the live demo.
+- Pause on the live demo or the small privacy footer.
 
 ## Shorter 60-Second Version
 
@@ -150,9 +151,9 @@ This demo user has a cool, light, soft everyday profile and a shelf with cool ta
 
 When I click Generate look, PaletteMe creates a coordinated eye, cheek, and lip plan using agent skills like undertone analysis, shade matching, look building, and shopping guard. If I change undertone, the analysis updates immediately.
 
-Then I check a viral bright orange coral lipstick before buying it. The agent compares it with the user's cool palette and helps prevent a risky purchase.
+Then I check a viral bright orange coral lipstick before buying it. The agent compares it with the user's cool palette, suggests safer alternatives, and helps prevent a risky purchase.
 
-The lower sections show the product's agent design, human-in-the-loop behavior, and safety and privacy rules. The project includes Gemini refinement, an ADK prototype, safety guards, human review checkpoints, and eval-ready cases.
+The page stays product-first, while the repository includes Gemini refinement, an ADK prototype, safety guards, human review checkpoints, and eval-ready cases.
 
 ## What To Show If Gemini Is Working
 
@@ -187,8 +188,7 @@ The demo is designed to be reliable. If Gemini or network access is unavailable,
 - `Generate look` works.
 - Changing `Undertone` updates the AI look analysis.
 - `Before I buy` has default viral coral example.
-- Scroll sections are visible:
-  - Agent design
-  - Human-in-the-loop
-  - Safety and privacy rules
+- Purchase check shows safer alternative shades.
+- Human review panel appears after a risky purchase result.
+- Small privacy and safety footer is visible at the bottom.
 - Video is under 90 seconds.

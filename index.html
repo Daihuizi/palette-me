@@ -15,9 +15,6 @@
         </div>
         <div class="nav-actions">
           <a href="#demo">Demo</a>
-          <a href="#agent">Agent</a>
-          <a href="#hitl">HITL</a>
-          <a href="#safety">Safety</a>
           <button id="resetDemo" class="ghost-button" type="button">Reset demo</button>
         </div>
       </nav>
@@ -196,78 +193,10 @@
       </section>
     </main>
 
-    <section id="agent" class="agent-band" aria-labelledby="agent-title">
-      <div class="agent-copy">
-        <p class="eyebrow">Agent design</p>
-        <h2 id="agent-title">A beauty assistant built from reusable skills</h2>
-        <p>
-          The production agent would combine shade matching, look building, shopping guardrails, and new-product research. The demo below simulates that flow locally so the product idea can be shown without a backend.
-        </p>
-      </div>
-      <div class="skill-grid" aria-label="Agent skill cards">
-        <article><strong>Undertone Analysis</strong><span>warm, cool, neutral, olive, muted</span></article>
-        <article><strong>Shade Matching</strong><span>maps product names to color families</span></article>
-        <article><strong>Look Builder</strong><span>connects eyes, cheeks, and lips</span></article>
-        <article><strong>Shopping Guard</strong><span>flags duplicates and risky shades</span></article>
-        <article><strong>Safety Guard</strong><span>screens medical, photo, and appearance-sensitive requests</span></article>
-        <article><strong>Human Review</strong><span>pauses sensitive decisions for approve, revise, or reject</span></article>
-      </div>
-    </section>
-
-    <section id="hitl" class="hitl-band" aria-labelledby="hitl-title">
-      <div class="hitl-copy">
-        <p class="eyebrow">Human-in-the-loop</p>
-        <h2 id="hitl-title">AI suggests. A person confirms.</h2>
-        <p>
-          PaletteMe uses human review checkpoints when a decision touches medical-like symptoms, face-photo privacy, or high-confidence purchase advice.
-        </p>
-      </div>
-      <div class="review-flow" aria-label="Human review flow">
-        <article>
-          <span>01</span>
-          <strong>Safety guard screens the request</strong>
-          <p>The agent checks for allergy, swelling, face-photo consent, duplicate buying, or appearance-sensitive language.</p>
-        </article>
-        <article>
-          <span>02</span>
-          <strong>Risky action becomes pending</strong>
-          <p>Instead of acting automatically, the agent creates a review checkpoint with approve, revise, or reject options.</p>
-        </article>
-        <article>
-          <span>03</span>
-          <strong>Human choice controls next step</strong>
-          <p>The user or reviewer confirms consent, edits the advice, or stops the recommendation entirely.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="safety" class="safety-band" aria-labelledby="safety-title">
-      <div class="safety-copy">
-        <p class="eyebrow">Safety and privacy rules</p>
-        <h2 id="safety-title">Personal beauty advice with clear boundaries</h2>
-        <p>
-          PaletteMe is designed to help with color decisions, not to judge appearance, diagnose skin, or pressure users to buy.
-        </p>
-      </div>
-      <div class="rule-grid" aria-label="Safety and privacy rule cards">
-        <article>
-          <strong>Consent first</strong>
-          <span>Future photo analysis should only run after explicit user permission.</span>
-        </article>
-        <article>
-          <strong>Local-first memory</strong>
-          <span>The prototype keeps shelf and profile data in local browser storage.</span>
-        </article>
-        <article>
-          <strong>No medical claims</strong>
-          <span>Skin irritation, allergy, and dermatology questions should be redirected to professionals.</span>
-        </article>
-        <article>
-          <strong>Shopping guardrails</strong>
-          <span>The agent flags duplicates and risky shades instead of pushing every new product.</span>
-        </article>
-      </div>
-    </section>
+    <footer class="product-footer">
+      <strong>Privacy & safety</strong>
+      <span>Local-first memory · Consent before future photo analysis · No skin diagnosis · Human review for risky purchase advice</span>
+    </footer>
 
     <script src="app.js"></script>
   </body>

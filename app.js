@@ -117,26 +117,31 @@ function profileInsight(profile) {
       families: ["peach", "coral", "warm brown", "terracotta"],
       direction: "golden, peachy, sun-warmed color harmony",
       avoid: "icy pink, blue mauve, and very gray taupe can look separated from a warm undertone.",
+      alternatives: ["soft peach blush", "warm rose lipstick", "terracotta nude lip"],
     },
     cool: {
       families: ["mauve", "rose", "berry", "cool taupe"],
       direction: "rosy, berry, and soft taupe color harmony",
       avoid: "bright orange coral and yellow-brown shades can become too warm against a cool undertone.",
+      alternatives: ["muted rose lipstick", "berry rose tint", "cool mauve blush"],
     },
     neutral: {
       families: ["rose brown", "soft nude", "dusty pink", "champagne"],
       direction: "balanced nude, rose-brown, and softly polished color harmony",
       avoid: "extreme neon, very gray, or very orange shades may overpower a neutral palette.",
+      alternatives: ["rose brown lipstick", "soft nude blush", "dusty pink tint"],
     },
     olive: {
       families: ["muted peach", "bronze", "khaki brown", "warm rose"],
       direction: "muted warmth with bronze, khaki brown, and soft rose balance",
       avoid: "white-based pastels and ashy mauves can turn flat or gray on olive undertones.",
+      alternatives: ["warm rose lipstick", "bronze cream shadow", "muted peach blush"],
     },
     muted: {
       families: ["dusty rose", "soft mauve", "milk tea brown", "blurred berry"],
       direction: "soft, blurred, low-contrast color harmony",
       avoid: "neon, very saturated red, and high-contrast colors can feel disconnected from a muted palette.",
+      alternatives: ["soft mauve tint", "milk tea brown shadow", "blurred berry lip"],
     },
   };
   return map[profile.undertone] || map.neutral;
@@ -195,6 +200,7 @@ function renderProfileAnalysis(profile, mode) {
         <span class="analysis-kicker">${escapeHtml(mode)}</span>
         <strong>${escapeHtml(profile.depth)} depth · ${escapeHtml(profile.undertone)} undertone</strong>
       </div>
+      <p class="change-signal">Updated from your current profile inputs.</p>
       <p><b>Best direction:</b> ${escapeHtml(insight.direction)}.</p>
       <p><b>Test first:</b> ${escapeHtml(insight.avoid)}</p>
     </div>
@@ -278,23 +284,25 @@ function pickRecommendedProducts(families) {
 
 function checkPurchase(product, shade) {
   const profile = state.profile;
-  const families = colorFamilies(profile);
+  const insight = profileInsight(profile);
+  const families = insight.families;
   const shadeLower = shade.toLowerCase();
   const ownedSimilar = state.products.find((item) => {
     const firstWord = item.shade.toLowerCase().split(" ")[0];
     return shadeLower.includes(firstWord) || item.shade.toLowerCase().includes(shadeLower);
   });
   const matches = families.some((family) => shadeLower.includes(family.split(" ")[0]));
+  const alternatives = insight.alternatives.join(", ");
 
   if (ownedSimilar) {
-    return `<strong>Maybe skip.</strong> ${escapeHtml(product)} sounds close to your existing ${escapeHtml(ownedSimilar.name)} in ${escapeHtml(ownedSimilar.shade)}. If you buy it, make sure the finish or use case is different.`;
+    return `<strong>Maybe skip.</strong> ${escapeHtml(product)} sounds close to your existing ${escapeHtml(ownedSimilar.name)} in ${escapeHtml(ownedSimilar.shade)}. If you buy it, make sure the finish or use case is different. <em>Safer alternatives:</em> ${escapeHtml(alternatives)}.`;
   }
 
   if (matches) {
-    return `<strong>Good candidate.</strong> ${escapeHtml(shade)} fits your ${profile.undertone} direction. It could help connect your eye, cheek, and lip palette.`;
+    return `<strong>Good candidate.</strong> ${escapeHtml(shade)} fits your ${profile.undertone} direction. It could help connect your eye, cheek, and lip palette. <em>Nearby safe shades:</em> ${escapeHtml(alternatives)}.`;
   }
 
-  return `<strong>Think twice.</strong> ${escapeHtml(shade)} does not strongly match your current best shade families: ${families.join(", ")}. Try it in store or look for a mini size first.`;
+  return `<strong>Think twice.</strong> ${escapeHtml(shade)} does not strongly match your current best shade families: ${families.join(", ")}. Try it in store or look for a mini size first. <em>Better options:</em> ${escapeHtml(alternatives)}.`;
 }
 
 function showHumanReview(reason) {

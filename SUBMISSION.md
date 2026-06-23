@@ -60,8 +60,9 @@ VIDEO_SUBMISSION_SCRIPT.md
 2. Fill or adjust the beauty profile.
 3. Add an owned product to the makeup shelf.
 4. Generate the AI look plan.
-5. Use "Before I buy" to check a shade and show duplicate protection.
-6. Scroll to the Agent, Human-in-the-loop, and Safety sections to explain how the project applies agent skills, review checkpoints, and privacy boundaries inside the product.
+5. Change undertone to show live personalization in the AI look plan.
+6. Use "Before I buy" to check a shade, show safer alternatives, and trigger the human review checkpoint.
+7. Point to the small privacy and safety footer as the product boundary.
 
 ## Agent Skills Used
 

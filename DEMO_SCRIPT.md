@@ -33,7 +33,7 @@ Then I use `Before I buy` to check a viral orange coral lipstick. PaletteMe warn
 
 The purchase check also opens a human-in-the-loop checkpoint. The agent can suggest, but a person can approve, revise, or reject before the user acts.
 
-The lower sections show the product's agent design, human-in-the-loop review, and safety and privacy rules. The project also includes Gemini refinement, an ADK prototype, safety guards, and eval cases.
+The page keeps the technical details inside the product flow: dynamic personalization, a before-buying guard, safer alternative shades, and a human-in-the-loop review checkpoint. The repository also includes Gemini refinement, an ADK prototype, safety guards, and eval cases.
 
 ## 90-Second Script
 
@@ -43,11 +43,11 @@ In the demo, the user starts with a cool undertone, light skin depth, combinatio
 
 When I click `Generate look`, PaletteMe builds a look plan from the user's own palette. It recommends color families, a daily recipe, shopping guardrails, and what to avoid. If I change the undertone from cool to warm, the live analysis changes from mauve, rose, berry, and cool taupe toward peach, coral, warm brown, and terracotta. If Gemini is available in `.env`, the recommendation is refined through Gemini; otherwise the app falls back to local deterministic skills.
 
-Next, I check a possible purchase: a viral bright orange coral lipstick. PaletteMe compares it with the user's profile and existing shelf. The goal is not to push more buying; the goal is to reduce waste, duplicates, and returns.
+Next, I check a possible purchase: a viral bright orange coral lipstick. PaletteMe compares it with the user's profile and existing shelf. The goal is not to push more buying; the goal is to reduce waste, duplicates, and returns. Instead of only saying no, it suggests safer alternative shades that fit the user's palette better.
 
 When the recommendation is risky, PaletteMe shows a pending human review panel. This demonstrates human-in-the-loop: the AI suggests, but a person can approve, revise, or reject the next step.
 
-Below the demo, the Agent section shows the reusable skills: undertone analysis, shade matching, look building, shopping guard, safety guard, and human review. The Human-in-the-loop section shows that sensitive decisions can become approve, revise, or reject checkpoints. The Safety section explains privacy, consent, and no-medical-diagnosis rules. This is why PaletteMe is more than a static webpage: it is a product prototype with an agent architecture and a path to deployment.
+The product page stays focused on the user experience. The technical architecture is documented in the repository, while the demo itself shows the agent behavior through live profile updates, purchase guardrails, and human review.
 
 ## Click Path
 
@@ -63,11 +63,10 @@ Below the demo, the Agent section shows the reusable skills: undertone analysis,
    - Product: `Viral Coral Lipstick`
    - Shade: `bright orange coral`
 10. Click `Check`.
-11. Point to the `Pending human review` panel.
-12. Click `Revise`.
-13. Scroll to `Agent design`.
-14. Scroll to `Human-in-the-loop`.
-15. Scroll to `Safety and privacy rules`.
+11. Point to the safer alternative shades in the result.
+12. Point to the `Pending human review` panel.
+13. Click `Revise`.
+14. Point to the privacy and safety footer if there is time.
 
 ## If The Network Or Gemini Fails
 

@@ -65,8 +65,10 @@ Future version:
 1. Fill out or reset the beauty profile.
 2. Review the default demo shelf.
 3. Generate a look plan.
-4. Check the default viral coral lipstick before buying it.
-5. Scroll through Agent, HITL, Safety, Training Camp Map, and Judge Demo.
+4. Change undertone to show the AI look plan updating live.
+5. Check the default viral coral lipstick before buying it.
+6. Show safer alternative shades and the human review checkpoint.
+7. End on the small privacy and safety footer.
 
 For a spoken walkthrough, see `DEMO_SCRIPT.md`. For a timed recording plan, see `VIDEO_SUBMISSION_SCRIPT.md`.
 
