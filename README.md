@@ -138,6 +138,7 @@ RUN_LIVE_ADK_TESTS=1 uv run pytest tests/integration/test_agent.py
 ## Competition Materials
 
 - `SUBMISSION.md`: project summary for judges
+- `KAGGLE_WRITEUP.md`: Kaggle capstone writeup draft
 - `VIDEO_SUBMISSION_SCRIPT.md`: final recording script and click path
 - `DEMO_SCRIPT.md`: live demo practice script
 - `SPEC.md`: product requirements and agent design

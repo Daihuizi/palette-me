@@ -2,10 +2,22 @@
 
 ## Required Links
 
+- Kaggle competition: `https://www.kaggle.com/competitions/5-day-ai-agents-intensive-vibecoding-course-with-google`
+- Kaggle writeups page: `https://www.kaggle.com/competitions/5-day-ai-agents-intensive-vibecoding-course-with-google/writeups`
 - GitHub repository: `https://github.com/Daihuizi/palette-me`
 - Local demo: `http://127.0.0.1:8787`
 - GitHub Pages live demo: `https://daihuizi.github.io/palette-me/`
 - Video submission: add the final uploaded video link here
+
+## Kaggle Submission Deadline
+
+Official competition page says:
+
+- Submission deadline: Monday, July 6, 2026 at 11:59 PM PT
+- Submission format: Kaggle writeup documenting the agent
+- Required writeup contents: video explaining the agent, brief rationale for building it, and link to the code used to build the agent
+
+Use `KAGGLE_WRITEUP.md` as the copy/paste draft.
 
 ## Before Recording
 
