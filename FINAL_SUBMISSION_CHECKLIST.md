@@ -4,7 +4,7 @@
 
 - GitHub repository: `https://github.com/Daihuizi/palette-me`
 - Local demo: `http://127.0.0.1:8787`
-- GitHub Pages target: `https://daihuizi.github.io/palette-me/`
+- GitHub Pages live demo: `https://daihuizi.github.io/palette-me/`
 - Video submission: add the final uploaded video link here
 
 ## Before Recording
@@ -50,7 +50,13 @@
 
 ## GitHub Pages Setup
 
-If the public demo is not live yet:
+The public static demo is live at:
+
+```text
+https://daihuizi.github.io/palette-me/
+```
+
+If Pages ever needs to be re-enabled:
 
 1. Open the GitHub repository.
 2. Go to `Settings` -> `Pages`.
