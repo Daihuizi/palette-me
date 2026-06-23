@@ -2,7 +2,7 @@
 
 ## Current Step
 
-PaletteMe now has a Gemini-ready agent layer. The app still works without any API key, but when `GEMINI_API_KEY` is available the local agent can ask Gemini to refine the recommendation copy while keeping the local skill results as the source of truth.
+PaletteMe now has both a Gemini-ready web agent layer and an ADK / Agents CLI prototype. The app still works without any API key, but when `GEMINI_API_KEY` is available the local agent can ask Gemini to refine the recommendation copy while keeping the local skill results as the source of truth.
 
 ## How The Hybrid Agent Works
 
@@ -52,20 +52,35 @@ to:
 gemini-assisted:<model>
 ```
 
-## ADK Upgrade Path
+## ADK Prototype
 
-When ready to make this a formal ADK project:
+The formal ADK structure now lives in:
 
-1. Preserve the existing web demo and local skills.
-2. Use `agents-cli scaffold enhance .` after confirming deployment target.
-3. Convert local skill functions into ADK tools.
-4. Define an ADK root agent that uses the same tool boundaries:
-   - undertone analysis
-   - shade matching
-   - look building
-   - shopping guard
-5. Add ADK eval cases from `EVALUATION.md`.
-6. Deploy with Cloud Run or Agent Runtime after the local version is stable.
+```text
+adk_app/agent.py
+```
+
+The ADK root agent uses these tools:
+
+- `analyze_undertone_profile`
+- `match_owned_products`
+- `build_makeup_look`
+- `check_purchase_fit`
+
+Run it locally:
+
+```bash
+agents-cli run "I have cool undertone, light skin, soft contrast, and I own taupe eyeshadow plus rose nude lipstick. Build me a daily PaletteMe look."
+```
+
+The local ADK prototype uses `.env` for the Gemini API key and defaults to `gemini-3.5-flash` for the ADK agent unless `PALETTEME_ADK_MODEL` is set.
+
+## Next ADK Steps
+
+1. Add ADK eval cases from `EVALUATION.md`.
+2. Connect the web UI directly to the ADK local service.
+3. Add memory for saved user palette preferences.
+4. Deploy with Cloud Run after the local version is stable.
 
 ## Why Not Skip Straight To Cloud
 

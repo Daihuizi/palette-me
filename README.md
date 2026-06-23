@@ -39,12 +39,11 @@ Current prototype:
 - Local browser storage
 - Local simulated agent API with reusable skills
 - Gemini-ready refinement layer with local fallback
+- ADK / Agents CLI prototype with PaletteMe tools
 - Competition-ready product story and clickable demo
 
 Future version:
 
-- Gemini-powered recommendation agent
-- ADK / Agents CLI backend
 - Google Cloud deployment
 - Optional photo-based color analysis
 - Product database and shade metadata
@@ -84,6 +83,39 @@ You can also run a sample agent request:
 npm run agent:sample
 ```
 
+## Run The ADK Prototype
+
+Install the Python ADK environment:
+
+```bash
+agents-cli install
+```
+
+Run a PaletteMe ADK prompt:
+
+```bash
+agents-cli run "I have cool undertone, light skin, soft contrast, and I own taupe eyeshadow plus rose nude lipstick. Build me a daily PaletteMe look."
+```
+
+Run the deterministic ADK tool tests:
+
+```bash
+uv run pytest tests/unit/test_dummy.py
+```
+
+Run the ADK streaming integration test:
+
+```bash
+uv run pytest tests/integration/test_agent.py
+```
+
+The streaming integration test is skipped by default because it makes a live
+model call. To run it manually:
+
+```bash
+RUN_LIVE_ADK_TESTS=1 uv run pytest tests/integration/test_agent.py
+```
+
 ## Optional Gemini Mode
 
 PaletteMe works without an API key. To let Gemini refine the local agent recommendations, set:
@@ -107,6 +139,7 @@ Then run `npm start`. PaletteMe uses Google's official `@google/genai` SDK. The 
 - `PITCH.md`: one-minute project story and demo script
 - `EVALUATION.md`: safety and evaluation plan
 - `GEMINI_ADK_PLAN.md`: Gemini and ADK upgrade path
+- `adk_app/agent.py`: ADK root agent with PaletteMe tools
 
 ## Safety Notes
 

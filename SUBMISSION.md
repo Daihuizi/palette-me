@@ -41,6 +41,12 @@ Run the local agent sample:
 npm run agent:sample
 ```
 
+Run the ADK prototype:
+
+```bash
+agents-cli run "I have cool undertone, light skin, soft contrast, and I own taupe eyeshadow plus rose nude lipstick. Build me a daily PaletteMe look."
+```
+
 ## Demo Flow
 
 1. Show the hero section and explain the pain point: makeup users need a personal color memory.
@@ -64,15 +70,24 @@ npm run agent:sample
 - Local simulated Agent API
 - Optional Gemini-assisted recommendation refinement
 - Node.js server with no external dependencies
+- Google ADK / Agents CLI prototype in `adk_app/`
+- ADK tools for undertone analysis, product matching, look building, and purchase checks
 - Structured documents: `README.md`, `SPEC.md`, `PITCH.md`, `EVALUATION.md`
+
+## Verification
+
+- `npm run agent:sample` confirms the web agent layer can use Gemini when `.env` is configured.
+- `uv run pytest tests/unit/test_dummy.py` passes deterministic ADK tool tests.
+- `uv run pytest tests/integration/test_agent.py` keeps live ADK streaming tests opt-in to avoid quota and model-availability flakes.
+- `RUN_LIVE_ADK_TESTS=1 uv run pytest tests/integration/test_agent.py` can be used for a live streaming check.
+- `agents-cli run ...` was used to confirm the ADK agent calls PaletteMe tools and returns a full makeup look.
 
 ## Future Roadmap
 
-1. Replace the local simulated agent with Gemini-powered reasoning.
-2. Convert the local skill modules into ADK tools or an ADK agent.
-3. Add product shade metadata and optional photo-based analysis.
+1. Add product shade metadata and optional photo-based analysis.
+2. Add ADK eval cases for personalization, duplicate detection, and safety.
+3. Connect the web UI directly to the ADK service.
 4. Deploy the web app and agent to Google Cloud / Cloud Run.
-5. Add evaluation cases for personalization, duplicate detection, and safety.
 
 ## Safety And Privacy
 
