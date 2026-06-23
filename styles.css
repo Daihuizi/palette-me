@@ -178,9 +178,7 @@ select {
 .story-band,
 .agent-band,
 .hitl-band,
-.safety-band,
-.tech-map-band,
-.judge-band {
+.safety-band {
   padding: 50px clamp(18px, 4vw, 52px);
 }
 
@@ -192,7 +190,6 @@ select {
 .story-band h2,
 .agent-band h2,
 .hitl-band h2,
-.tech-map-band h2,
 .safety-band h2 {
   max-width: 760px;
   margin: 0;
@@ -203,7 +200,6 @@ select {
 .story-grid,
 .skill-grid,
 .review-flow,
-.tech-map-list,
 .rule-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -214,7 +210,6 @@ select {
 .story-grid article,
 .skill-grid article,
 .review-flow article,
-.tech-map-list article,
 .rule-grid article {
   min-height: 170px;
   border: 1px solid var(--line);
@@ -232,7 +227,6 @@ select {
 .story-grid h3,
 .skill-grid strong,
 .review-flow strong,
-.tech-map-list strong,
 .rule-grid strong {
   display: block;
   margin: 14px 0 8px;
@@ -245,7 +239,6 @@ select {
 .review-flow p,
 .safety-copy p,
 .skill-grid span,
-.tech-map-list span,
 .rule-grid span {
   margin: 0;
   color: var(--muted);
@@ -403,6 +396,42 @@ button:hover {
   gap: 14px;
 }
 
+.profile-analysis {
+  display: grid;
+  gap: 8px;
+  border: 1px solid rgba(139, 65, 88, 0.2);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(139, 65, 88, 0.09), rgba(212, 180, 97, 0.08)),
+    #fff;
+  padding: 14px;
+}
+
+.profile-analysis strong {
+  display: block;
+  margin-top: 3px;
+  color: var(--ink);
+  font-size: 18px;
+}
+
+.profile-analysis p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.profile-analysis b {
+  color: var(--berry);
+}
+
+.analysis-kicker {
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .advice-block {
   border-left: 4px solid var(--rose);
   background: #fff;
@@ -434,6 +463,55 @@ button:hover {
 
 .buy-advice strong {
   color: var(--ink);
+}
+
+.human-review-panel {
+  display: grid;
+  gap: 14px;
+  margin-top: 14px;
+  border: 1px solid rgba(181, 138, 67, 0.42);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(181, 138, 67, 0.12), rgba(255, 255, 255, 0) 62%),
+    #fff;
+  padding: 16px;
+}
+
+.human-review-panel[hidden] {
+  display: none;
+}
+
+.human-review-panel h3 {
+  margin: 0 0 8px;
+  font-size: 17px;
+}
+
+.human-review-panel p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.review-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.review-actions button {
+  min-height: 38px;
+}
+
+.review-actions button[data-review-action="revise"] {
+  background: var(--sage);
+}
+
+.review-actions button[data-review-action="reject"] {
+  background: var(--ink);
+}
+
+.review-outcome {
+  font-weight: 760;
 }
 
 .agent-status {
@@ -549,85 +627,6 @@ button:hover {
   color: var(--ink);
 }
 
-.tech-map-band {
-  background: rgba(255, 255, 255, 0.58);
-  border-bottom: 1px solid var(--line);
-}
-
-.tech-map-list {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-}
-
-.tech-map-list article {
-  min-height: 156px;
-}
-
-.tech-map-list strong {
-  margin-top: 0;
-  color: var(--gold);
-}
-
-.judge-band {
-  display: grid;
-  grid-template-columns: minmax(300px, 1fr) minmax(280px, 0.8fr);
-  gap: 18px;
-  align-items: stretch;
-  background: rgba(244, 229, 227, 0.58);
-  border-top: 1px solid var(--line);
-}
-
-.judge-card,
-.metrics-strip article {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #fff;
-  box-shadow: var(--shadow);
-  padding: 24px;
-}
-
-.judge-card h2 {
-  margin: 0;
-  max-width: 680px;
-  font-size: clamp(28px, 4vw, 44px);
-  line-height: 1.08;
-}
-
-.demo-steps {
-  display: grid;
-  gap: 12px;
-  margin: 22px 0 0;
-  padding-left: 22px;
-  color: var(--muted);
-  line-height: 1.55;
-}
-
-.demo-steps strong {
-  color: var(--ink);
-}
-
-.metrics-strip {
-  display: grid;
-  gap: 14px;
-}
-
-.metrics-strip article {
-  display: grid;
-  min-height: 120px;
-  align-content: center;
-}
-
-.metrics-strip strong {
-  color: var(--berry);
-  font-size: 42px;
-  line-height: 1;
-}
-
-.metrics-strip span {
-  margin-top: 6px;
-  color: var(--muted);
-  font-weight: 720;
-}
-
 @media (max-width: 920px) {
   .app-shell,
   .hero-grid,
@@ -635,11 +634,8 @@ button:hover {
   .agent-band,
   .hitl-band,
   .safety-band,
-  .tech-map-band,
-  .judge-band,
   .skill-grid,
   .review-flow,
-  .tech-map-list,
   .rule-grid,
   .form-grid,
   .product-form,

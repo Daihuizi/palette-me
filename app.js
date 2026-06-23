@@ -51,7 +51,11 @@ const inventoryList = document.querySelector("#inventoryList");
 const recommendation = document.querySelector("#recommendation");
 const matchScore = document.querySelector("#matchScore");
 const buyAdvice = document.querySelector("#buyAdvice");
+const humanReviewPanel = document.querySelector("#humanReviewPanel");
+const humanReviewReason = document.querySelector("#humanReviewReason");
+const humanReviewOutcome = document.querySelector("#humanReviewOutcome");
 const agentOnline = location.protocol.startsWith("http");
+let recommendationRequestId = 0;
 
 function loadState() {
   const saved = localStorage.getItem(storageKey);
@@ -107,15 +111,39 @@ function renderInventory() {
   });
 }
 
-function colorFamilies(profile) {
+function profileInsight(profile) {
   const map = {
-    warm: ["peach", "coral", "warm brown", "terracotta"],
-    cool: ["mauve", "rose", "berry", "cool taupe"],
-    neutral: ["rose brown", "soft nude", "dusty pink", "champagne"],
-    olive: ["muted peach", "bronze", "khaki brown", "warm rose"],
-    muted: ["dusty rose", "soft mauve", "milk tea brown", "blurred berry"],
+    warm: {
+      families: ["peach", "coral", "warm brown", "terracotta"],
+      direction: "golden, peachy, sun-warmed color harmony",
+      avoid: "icy pink, blue mauve, and very gray taupe can look separated from a warm undertone.",
+    },
+    cool: {
+      families: ["mauve", "rose", "berry", "cool taupe"],
+      direction: "rosy, berry, and soft taupe color harmony",
+      avoid: "bright orange coral and yellow-brown shades can become too warm against a cool undertone.",
+    },
+    neutral: {
+      families: ["rose brown", "soft nude", "dusty pink", "champagne"],
+      direction: "balanced nude, rose-brown, and softly polished color harmony",
+      avoid: "extreme neon, very gray, or very orange shades may overpower a neutral palette.",
+    },
+    olive: {
+      families: ["muted peach", "bronze", "khaki brown", "warm rose"],
+      direction: "muted warmth with bronze, khaki brown, and soft rose balance",
+      avoid: "white-based pastels and ashy mauves can turn flat or gray on olive undertones.",
+    },
+    muted: {
+      families: ["dusty rose", "soft mauve", "milk tea brown", "blurred berry"],
+      direction: "soft, blurred, low-contrast color harmony",
+      avoid: "neon, very saturated red, and high-contrast colors can feel disconnected from a muted palette.",
+    },
   };
   return map[profile.undertone] || map.neutral;
+}
+
+function colorFamilies(profile) {
+  return profileInsight(profile).families;
 }
 
 async function requestAgentRecommendation() {
@@ -149,14 +177,34 @@ async function requestPurchaseCheck(product, shade) {
 }
 
 async function buildLook() {
+  const requestId = ++recommendationRequestId;
+  renderLocalRecommendation("Live local skills");
+
   const agentResult = await requestAgentRecommendation();
+  if (requestId !== recommendationRequestId) return;
   if (agentResult) {
     renderAgentRecommendation(agentResult);
-    return;
   }
+}
 
+function renderProfileAnalysis(profile, mode) {
+  const insight = profileInsight(profile);
+  return `
+    <div class="profile-analysis">
+      <div>
+        <span class="analysis-kicker">${escapeHtml(mode)}</span>
+        <strong>${escapeHtml(profile.depth)} depth · ${escapeHtml(profile.undertone)} undertone</strong>
+      </div>
+      <p><b>Best direction:</b> ${escapeHtml(insight.direction)}.</p>
+      <p><b>Test first:</b> ${escapeHtml(insight.avoid)}</p>
+    </div>
+  `;
+}
+
+function renderLocalRecommendation(mode = "Live local skills") {
   const profile = state.profile;
-  const families = colorFamilies(profile);
+  const insight = profileInsight(profile);
+  const families = insight.families;
   const recommended = pickRecommendedProducts(families);
   const productText = state.products.map((product) => product.shade.toLowerCase()).join(" ");
   const duplicates = families.filter((family) => productText.includes(family.split(" ")[0]));
@@ -172,6 +220,7 @@ async function buildLook() {
   }[profile.style];
 
   recommendation.innerHTML = `
+    ${renderProfileAnalysis(profile, mode)}
     <div class="advice-block">
       <h3>Best shade families</h3>
       <p>${families.join(", ")}. These colors should make your ${profile.depth} skin depth and ${profile.undertone} undertone feel more harmonious.</p>
@@ -186,7 +235,7 @@ async function buildLook() {
     </div>
     <div class="advice-block">
       <h3>What to avoid</h3>
-      <p>Avoid shades that look isolated from the rest of your palette. If the eye, cheek, and lip colors do not share warmth, depth, or softness, the final makeup can feel harder to style.</p>
+      <p>${escapeHtml(insight.avoid)} Also avoid shades that look isolated from the rest of your palette. If the eye, cheek, and lip colors do not share warmth, depth, or softness, the final makeup can feel harder to style.</p>
     </div>
   `;
 }
@@ -195,6 +244,7 @@ function renderAgentRecommendation(result) {
   matchScore.textContent = result.score;
   recommendation.innerHTML = `
     <div class="agent-status">Local Agent API · ${escapeHtml(result.mode)}</div>
+    ${renderProfileAnalysis(state.profile, "Live profile signal")}
     ${result.sections
       .map(
         (section) => `
@@ -247,6 +297,17 @@ function checkPurchase(product, shade) {
   return `<strong>Think twice.</strong> ${escapeHtml(shade)} does not strongly match your current best shade families: ${families.join(", ")}. Try it in store or look for a mini size first.`;
 }
 
+function showHumanReview(reason) {
+  humanReviewReason.textContent = reason;
+  humanReviewOutcome.textContent = "";
+  humanReviewPanel.hidden = false;
+}
+
+function hideHumanReview() {
+  humanReviewPanel.hidden = true;
+  humanReviewOutcome.textContent = "";
+}
+
 function escapeHtml(value) {
   return String(value)
     .replaceAll("&", "&amp;")
@@ -292,12 +353,33 @@ document.querySelector("#checkerForm").addEventListener("submit", (event) => {
   state.wish = { product, shade };
   saveState();
   buyAdvice.textContent = "Checking with PaletteMe Agent...";
+  hideHumanReview();
   requestPurchaseCheck(product, shade).then((agentResult) => {
     if (agentResult) {
       buyAdvice.innerHTML = `<strong>${escapeHtml(agentResult.label)}.</strong> ${escapeHtml(agentResult.advice)}`;
+      if (agentResult.decision !== "buy") {
+        showHumanReview(
+          "PaletteMe found a risky or duplicate purchase signal. A person should approve, revise, or reject this recommendation before acting.",
+        );
+      }
       return;
     }
     buyAdvice.innerHTML = checkPurchase(product, shade);
+    showHumanReview(
+      "This shade may not fit the current palette. A human checkpoint is required before turning the suggestion into a purchase decision.",
+    );
+  });
+});
+
+document.querySelectorAll("[data-review-action]").forEach((button) => {
+  button.addEventListener("click", () => {
+    const action = button.dataset.reviewAction;
+    const messages = {
+      approve: "Approved: the user accepts the agent's recommendation and can proceed carefully.",
+      revise: "Revise: the user wants a safer alternative shade before deciding.",
+      reject: "Rejected: the user stops this purchase and keeps the current palette unchanged.",
+    };
+    humanReviewOutcome.textContent = messages[action];
   });
 });
 
@@ -309,10 +391,12 @@ document.querySelector("#resetDemo").addEventListener("click", () => {
   hydrateProfile();
   renderInventory();
   buildLook();
+  hideHumanReview();
   buyAdvice.textContent = "Enter a product and shade to get a buy, maybe, or skip recommendation.";
 });
 
 hydrateProfile();
 renderInventory();
 buildLook();
+hideHumanReview();
 buyAdvice.textContent = "Enter a product and shade to get a buy, maybe, or skip recommendation.";

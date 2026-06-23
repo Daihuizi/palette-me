@@ -4,7 +4,7 @@
 
 Length: 60 to 90 seconds.
 
-Goal: Show that PaletteMe is a working AI agent prototype, not only a static webpage. The video should demonstrate the product flow, agent skills, safety, human-in-the-loop, eval readiness, and training camp concept mapping.
+Goal: Show that PaletteMe is a working AI agent prototype, not only a static webpage. The video should demonstrate the product flow, dynamic personalization, agent skills, safety, human-in-the-loop, and eval readiness.
 
 ## Recording Setup
 
@@ -72,11 +72,19 @@ Say:
 
 When I click Generate look, the agent creates a coordinated eye, cheek, and lip plan from the user's own profile and products. It is not just a generic beauty chatbot; it uses reusable agent skills.
 
+For the video, I am using prepared demo data so the flow is easy to follow. Watch what happens when I change undertone: the profile signal, best shade families, and avoid list update immediately, then the agent recommendation can refine the same flow.
+
 Action:
 
 - Click `Generate look`.
 - Pause briefly on the recommendation cards.
+- Change `Undertone` from `Cool` to `Warm`, then back to `Cool`.
+- Point to the updated `Live profile signal` / shade family text.
 - Point to the `Local Agent API` / `gemini-assisted` status if visible.
+
+If the status shows `local-simulated:gemini-fallback`, say:
+
+This shows the local agent fallback mode. If Gemini is available, the same flow can be refined by Gemini, but the demo still works reliably without network dependency.
 
 ### 35-48s: Before I Buy
 
@@ -94,7 +102,12 @@ Action:
   - `Viral Coral Lipstick`
   - `bright orange coral`
 - Click `Check`.
-- Pause on the result.
+- Pause on the result and the `Pending human review` panel.
+- Click `Revise` to show that the human can change the next step.
+
+Say:
+
+This is the human-in-the-loop moment. The AI can suggest that this purchase is risky, but the final action is not automatic. A person can approve, revise, or reject the recommendation.
 
 ### 48-62s: Agent Skills, HITL, Safety
 
@@ -113,21 +126,19 @@ Action:
 - Scroll steadily.
 - Do not stop too long on each card.
 
-### 62-75s: Training Camp Map And Close
+### 62-75s: Close
 
 Screen:
 
-- Scroll to `Training camp map`.
-- End around `Judge demo`.
+- End around `Safety and privacy rules`, or return briefly to the demo panel.
 
 Say:
 
-This project maps to the training camp units: vibe coding, agent tools, reusable skills, safety and evaluation, and spec-driven development. PaletteMe combines a working web demo, Gemini refinement, ADK tools, safety guards, human-in-the-loop, and eval-ready cases.
+The training camp concepts are built into the product behavior: reusable skills power the look plan, safety guards shape the boundaries, human-in-the-loop controls risky decisions, and eval-ready cases help test the agent. PaletteMe is a product prototype with a path to deployment, not just a static page.
 
 Action:
 
-- Pause on the Training Camp Map.
-- End on `Judge demo`.
+- Pause on the safety cards or the live demo.
 
 ## Shorter 60-Second Version
 
@@ -137,11 +148,11 @@ PaletteMe is an AI personal makeup palette assistant. It helps users track owned
 
 This demo user has a cool, light, soft everyday profile and a shelf with cool taupe eyeshadow, dusty rose blush, rose nude lip tint, and a soft base product.
 
-When I click Generate look, PaletteMe creates a coordinated eye, cheek, and lip plan using agent skills like undertone analysis, shade matching, look building, and shopping guard.
+When I click Generate look, PaletteMe creates a coordinated eye, cheek, and lip plan using agent skills like undertone analysis, shade matching, look building, and shopping guard. If I change undertone, the analysis updates immediately.
 
 Then I check a viral bright orange coral lipstick before buying it. The agent compares it with the user's cool palette and helps prevent a risky purchase.
 
-The lower sections show human-in-the-loop, safety and privacy rules, and a training camp map. The project includes Gemini refinement, an ADK prototype, safety guards, human review checkpoints, and eval-ready cases.
+The lower sections show the product's agent design, human-in-the-loop behavior, and safety and privacy rules. The project includes Gemini refinement, an ADK prototype, safety guards, human review checkpoints, and eval-ready cases.
 
 ## What To Show If Gemini Is Working
 
@@ -174,11 +185,10 @@ The demo is designed to be reliable. If Gemini or network access is unavailable,
 - Click `Reset demo`.
 - Product defaults are visible.
 - `Generate look` works.
+- Changing `Undertone` updates the AI look analysis.
 - `Before I buy` has default viral coral example.
 - Scroll sections are visible:
   - Agent design
   - Human-in-the-loop
   - Safety and privacy rules
-  - Training camp map
-  - Judge demo
 - Video is under 90 seconds.

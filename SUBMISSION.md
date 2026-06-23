@@ -61,7 +61,7 @@ VIDEO_SUBMISSION_SCRIPT.md
 3. Add an owned product to the makeup shelf.
 4. Generate the AI look plan.
 5. Use "Before I buy" to check a shade and show duplicate protection.
-6. Scroll to the Agent, Human-in-the-loop, Safety, and Judge Demo sections to explain how the project maps to agent skills and evaluation.
+6. Scroll to the Agent, Human-in-the-loop, and Safety sections to explain how the project applies agent skills, review checkpoints, and privacy boundaries inside the product.
 
 ## Agent Skills Used
 
